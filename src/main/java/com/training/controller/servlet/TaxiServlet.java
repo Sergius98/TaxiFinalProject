@@ -59,6 +59,10 @@ public class TaxiServlet extends HttpServlet {
         process(req,resp);
     }
 
+    // TODO: 4/18/19 wrong paths in error jsp
+    // TODO: 4/18/19 move accessPath(PATH_ATTRIBUTE_KEY_WORD) creation into an utill
+    //      and call it from accessfilter and where user is changed
+    //      it should help
     private void process(HttpServletRequest req, HttpServletResponse resp)
             throws IOException, ServletException {
         int role = 0;
@@ -83,7 +87,7 @@ public class TaxiServlet extends HttpServlet {
         accessPath = IServletConstants.ROOT_PATH;
         try{
             accessPath += IServletConstants.ROLES_PREFIXES[role];
-        } catch (IndexOutOfBoundsException e){
+        } catch (Exception e){
             accessPath += IServletConstants.ROLES_PREFIXES[IServletConstants.LOWEST_ACCESS_LEVEL];
         }
 
