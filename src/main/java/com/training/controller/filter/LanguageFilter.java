@@ -15,17 +15,17 @@ public class LanguageFilter implements Filter {
 
     private Logger log = Logger.getLogger(LanguageFilter.class);
 
-    private static final String[] languages_list = {"en", "ua"};
-
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
             throws IOException, ServletException {
 
-        Optional<String> language = Optional.ofNullable((String)req.getParameter("lang"));
+        Optional<String> language = Optional.ofNullable((String)req.getParameter(IServletConstants.LANG_ATTRIBUTE_KEY_WORD));
         if (language.isPresent()){
-            ((HttpServletRequest)req).getSession().setAttribute("lang", req.getParameter("lang"));
+            ((HttpServletRequest)req).getSession().setAttribute(IServletConstants.LANG_ATTRIBUTE_KEY_WORD, req.getParameter(IServletConstants.LANG_ATTRIBUTE_KEY_WORD));
         }
-        req.setAttribute("LANGUAGES_LIST", languages_list);
+
+        req.setAttribute(IServletConstants.LANGUAGES_LIST_KEY_WORD,
+                IServletConstants.LANGUAGES_LIST);
 
         chain.doFilter(req, resp);
 

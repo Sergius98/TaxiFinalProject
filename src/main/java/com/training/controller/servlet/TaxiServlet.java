@@ -67,7 +67,7 @@ public class TaxiServlet extends HttpServlet {
         String path = req.getRequestURI().replaceAll(IServletConstants.ROOT_PATH, "");
         log.info("path:" + path);
 
-        req.setAttribute("ACTION_URI", req.getRequestURI());
+        req.setAttribute(IServletConstants.ACTION_URI_ATTRIBUTE_KEY_WORD, req.getRequestURI());
 
         // do command
         Command command = commands.getOrDefault(path, defaultPage);
@@ -76,8 +76,8 @@ public class TaxiServlet extends HttpServlet {
         log.debug("class:" + command.getClass().getName());
 
         // set role paths
-        if (Optional.ofNullable(session.getAttribute("ROLE")).isPresent()){
-            role = (int)session.getAttribute("ROLE");
+        if (Optional.ofNullable(session.getAttribute(IServletConstants.ROLE_ATTRIBUTE_KEY_WORD)).isPresent()){
+            role = (int)session.getAttribute(IServletConstants.ROLE_ATTRIBUTE_KEY_WORD);
         }
 
         accessPath = IServletConstants.ROOT_PATH;
@@ -87,7 +87,7 @@ public class TaxiServlet extends HttpServlet {
             accessPath += IServletConstants.ROLES_PREFIXES[IServletConstants.LOWEST_ACCESS_LEVEL];
         }
 
-        req.setAttribute("PATH",accessPath);
+        req.setAttribute(IServletConstants.PATH_ATTRIBUTE_KEY_WORD, accessPath);
 
         // do redirect if needed
         if ( page.contains(IServletConstants.REDIRECT_KEY_WORD) ) {

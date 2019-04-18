@@ -34,12 +34,12 @@ public class SignUpCommand implements Command {
                 try(UserDao dao = DaoFactory.getInstance().createUserDao()){
                     if (dao.create(user.get())){
                         log.info("user was registered");
-                        req.getSession().setAttribute("ROLE", user.get().getRole() + 1);
-                        req.getSession().setAttribute("USER_ID", user.get().getId());
-                        req.setAttribute("ROLE", user.get().getRole() + 1);
+                        req.getSession().setAttribute(IServletConstants.ROLE_ATTRIBUTE_KEY_WORD, user.get().getRole() + 1);
+                        req.getSession().setAttribute(IServletConstants.USER_ID_ATTRIBUTE_KEY_WORD, user.get().getId());
+                        req.setAttribute(IServletConstants.ROLE_ATTRIBUTE_KEY_WORD, user.get().getRole() + 1);
                         result = IServletConstants.REDIRECT_KEY_WORD + IServletConstants.HOME_PAGE_PATH;
                     } else {
-                        req.setAttribute("ALERT", ResourceBundle.getBundle("errors", locale).getString("nickname_is_taken"));
+                        req.setAttribute(IServletConstants.ALERT_ATTRIBUTE_KEY_WORD, ResourceBundle.getBundle("errors", locale).getString("nickname_is_taken"));
                         log.info("user registration failed");
                     }
                 } catch (Exception e){

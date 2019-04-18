@@ -2,6 +2,9 @@ package com.training.controller.servlet;
 
 
 public interface IServletConstants {
+    String[] CURRENCY_LIST = {"dollar", "hryvnia"};
+    String[]  LANGUAGES_LIST = {"en", "ua"};
+
     String ROOT_PATH = "/taxi";
     String SERVLET_PATH = ROOT_PATH + "/*";
 
@@ -18,7 +21,17 @@ public interface IServletConstants {
 
     String REDIRECT_KEY_WORD = "redirect:";
 
+    String PATH_ATTRIBUTE_KEY_WORD = "PATH";
     String ROLE_ATTRIBUTE_KEY_WORD = "ROLE";
+    String USER_ATTRIBUTE_KEY_WORD = "USER";
+    String USER_ID_ATTRIBUTE_KEY_WORD = "USER_ID";
+    String ALERT_ATTRIBUTE_KEY_WORD = "ALERT";
+    String CURRENCY_ATTRIBUTE_KEY_WORD = "CURRENCY";
+    String CURRENCY_LIST_ATTRIBUTE_KEY_WORD = "CURRENCY_LIST";
+    String LANGUAGES_LIST_KEY_WORD = "LANGUAGES_LIST";
+    String CURR_ATTRIBUTE_KEY_WORD = "curr";
+    String LANG_ATTRIBUTE_KEY_WORD = "lang";
+    String ACTION_URI_ATTRIBUTE_KEY_WORD = "ACTION_URI";
 
     // paths shouldn't be changed unless there is some changes in jsp
     String HOME_PAGE_PATH = "/home";

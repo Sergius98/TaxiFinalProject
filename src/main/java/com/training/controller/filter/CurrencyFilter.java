@@ -14,21 +14,20 @@ public class CurrencyFilter implements Filter {
 
     private Logger log = Logger.getLogger(CurrencyFilter.class);
 
-    private static final String[] currency_list = {"dollar", "hryvnia"};
-
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
             throws IOException, ServletException {
 
-        Optional<String> language = Optional.ofNullable(req.getParameter("curr"));
+        Optional<String> language = Optional.ofNullable(req.getParameter(IServletConstants.CURR_ATTRIBUTE_KEY_WORD));
         if (language.isPresent()){
-            ((HttpServletRequest)req).getSession().setAttribute("curr", req.getParameter("curr"));
+            ((HttpServletRequest)req).getSession().setAttribute(IServletConstants.CURR_ATTRIBUTE_KEY_WORD, req.getParameter(IServletConstants.CURR_ATTRIBUTE_KEY_WORD));
         }
-        req.setAttribute("CURRENCY_LIST", currency_list);
-        if (Optional.ofNullable(((HttpServletRequest)req).getSession().getAttribute("curr")).isPresent()){
-            req.setAttribute("CURRENCY", ((HttpServletRequest)req).getSession().getAttribute("curr"));
+        req.setAttribute(IServletConstants.CURRENCY_LIST_ATTRIBUTE_KEY_WORD,
+                IServletConstants.CURRENCY_LIST);
+        if (Optional.ofNullable(((HttpServletRequest)req).getSession().getAttribute(IServletConstants.CURR_ATTRIBUTE_KEY_WORD)).isPresent()){
+            req.setAttribute(IServletConstants.CURRENCY_ATTRIBUTE_KEY_WORD, ((HttpServletRequest)req).getSession().getAttribute(IServletConstants.CURR_ATTRIBUTE_KEY_WORD));
         } else {
-            req.setAttribute("CURRENCY", currency_list[0]);
+            req.setAttribute(IServletConstants.CURRENCY_ATTRIBUTE_KEY_WORD, IServletConstants.CURRENCY_LIST[0]);
         }
 
         chain.doFilter(req, resp);
