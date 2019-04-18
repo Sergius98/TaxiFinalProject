@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@include file="../includes/header.jsp" %>
+<%@include file="../WEB-INF/view/includes/header.jsp" %>
 
 <div class="lab2_main">
   <div class="container my_main_block">
@@ -70,4 +70,4 @@
 </div>
 
 
-<%@include file="../includes/footer.jsp" %>
+<%@include file="../WEB-INF/view/includes/footer.jsp" %>

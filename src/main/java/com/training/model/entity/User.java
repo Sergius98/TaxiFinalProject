@@ -10,6 +10,12 @@ public class User {
     public User(){
 
     }
+    public User(String nickname, String password){
+        this.nickname = nickname;
+        this.password = password;
+        this.role = 0;
+        this.spendMoney = 0;
+    }
     public User(int id, String nickname, String password, int role, int spendMoney) {
         this.id = id;
         this.nickname = nickname;

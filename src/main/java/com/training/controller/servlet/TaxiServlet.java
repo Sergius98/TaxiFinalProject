@@ -7,22 +7,17 @@ import com.training.controller.command.guest.HomeCommand;
 import com.training.controller.command.guest.LoginCommand;
 import com.training.controller.command.guest.SignUpCommand;
 import com.training.controller.command.user.LogoutCommand;
-import com.training.model.dao.DaoFactory;
-import com.training.model.dao.interfaces.TaxiDao;
-import com.training.model.dao.interfaces.UserDao;
-import com.training.model.entity.User;
 import org.apache.log4j.Logger;
 
-import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.Optional;
 
 @WebServlet(IServletConstants.SERVLET_PATH)
 public class TaxiServlet extends HttpServlet {
@@ -53,30 +48,51 @@ public class TaxiServlet extends HttpServlet {
         commands.put(IServletConstants.ADMIN_PREFIX + IServletConstants.LOGOUT_PAGE_PATH, new LogoutCommand());
     }
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
         process(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
         process(req,resp);
     }
 
-    private void process(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-
+    private void process(HttpServletRequest req, HttpServletResponse resp)
+            throws IOException, ServletException {
+        int role = 0;
+        String accessPath;
+        HttpSession session = req.getSession();
         String path = req.getRequestURI().replaceAll(IServletConstants.ROOT_PATH, "");
         log.info("path:" + path);
 
+        req.setAttribute("ACTION_URI", req.getRequestURI());
+
+        // do command
         Command command = commands.getOrDefault(path, defaultPage);
         String page = command.execute(req);
-        log.info("class:" + command.getClass().getName());
 
-        // TODO: 4/17/19 move role to filter
-        req.setAttribute("ROLE", 0);
-        req.setAttribute("PATH", IServletConstants.ROOT_PATH + IServletConstants.ROLES_PREFIXES[0]);
+        log.debug("class:" + command.getClass().getName());
 
+        // set role paths
+        if (Optional.ofNullable(session.getAttribute("ROLE")).isPresent()){
+            role = (int)session.getAttribute("ROLE");
+        }
+
+        accessPath = IServletConstants.ROOT_PATH;
+        try{
+            accessPath += IServletConstants.ROLES_PREFIXES[role];
+        } catch (IndexOutOfBoundsException e){
+            accessPath += IServletConstants.ROLES_PREFIXES[IServletConstants.LOWEST_ACCESS_LEVEL];
+        }
+
+        req.setAttribute("PATH",accessPath);
+
+        // do redirect if needed
         if ( page.contains(IServletConstants.REDIRECT_KEY_WORD) ) {
-            resp.sendRedirect(req.getContextPath() + (page = page.replaceAll(IServletConstants.REDIRECT_KEY_WORD, "")) );
+            resp.sendRedirect(req.getContextPath() + (page = accessPath +
+                    page.replaceAll(IServletConstants.REDIRECT_KEY_WORD, "")) );
             log.info("redirect:" + page);
         } else {
             req.getRequestDispatcher(page).forward(req, resp);

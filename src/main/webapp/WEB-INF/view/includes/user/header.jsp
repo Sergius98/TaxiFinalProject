@@ -1,5 +1,5 @@
 <li class="nav-item">
-    <a class="nav-link" href="${pageContext.request.contextPath}${PATHES.get("home")}">
-        ${MESSAGE.getString("home")}
+    <a class="nav-link" href="${pageContext.request.contextPath}${PATH}${PATHS.HOME_PAGE_PATH}/logout">
+        <fmt:message key="logout"/>
     </a>
 </li>
