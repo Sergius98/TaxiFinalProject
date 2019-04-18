@@ -20,11 +20,16 @@ public class CurrencyFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
             throws IOException, ServletException {
 
-        Optional<String> language = Optional.ofNullable((String)req.getParameter("curr"));
+        Optional<String> language = Optional.ofNullable(req.getParameter("curr"));
         if (language.isPresent()){
             ((HttpServletRequest)req).getSession().setAttribute("curr", req.getParameter("curr"));
         }
         req.setAttribute("CURRENCY_LIST", currency_list);
+        if (Optional.ofNullable(((HttpServletRequest)req).getSession().getAttribute("curr")).isPresent()){
+            req.setAttribute("CURRENCY", ((HttpServletRequest)req).getSession().getAttribute("curr"));
+        } else {
+            req.setAttribute("CURRENCY", currency_list[0]);
+        }
 
         chain.doFilter(req, resp);
 

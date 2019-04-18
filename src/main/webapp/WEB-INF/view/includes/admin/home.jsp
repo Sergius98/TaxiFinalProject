@@ -5,21 +5,15 @@
   Time: 8:25 PM
   To change this template use File | Settings | File Templates.
 
-    <div class="row my_block">
-        <div class="col-lg-4"></div>
-        <div class="col-lg-4 text-center">
-            <button type="submit" class="btn btn-outline-dark"
-                    data-toggle="tooltip" data-placement="top" title="${MESSAGE.getString("input_button_message")}"
-            >${MESSAGE.getString("calculate")}</button>
-        </div>
-        <div class="col-lg-4"></div>
-    </div>
 --%>
+
 <div class="row my_block">
     <div class="col-lg-2"></div>
-    <div class="col-lg-8 text-center">
+    <div class="col-lg-8 text-left">
             <span>
-                <%-- input data from resource bundle --%> Admin Message
+                <fmt:message key="hi"/>${USER.nickname}<br>
+                <fmt:message key="admin_reminder"/>
+
             </span>
     </div>
     <div class="col-lg-2"></div>

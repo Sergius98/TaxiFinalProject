@@ -20,7 +20,7 @@ public class AccessFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
             throws IOException, ServletException {
         int role = getRole((HttpServletRequest)req);
-        req.setAttribute("ROLE", role);
+        req.setAttribute(IServletConstants.ROLE_ATTRIBUTE_KEY_WORD, role);
         log.info("role : " + role);
         int access = getAccess((HttpServletRequest)req);
         log.info("access : " + access);

@@ -33,6 +33,8 @@ public class LoginCommand implements Command {
                     if (user.isPresent()){
                         log.info("user logged in");
                         req.getSession().setAttribute("USER_ID", user.get().getId());
+                        // TODO: 4/18/19 remove user from session
+                        req.getSession().setAttribute("USER", user.get());
                         req.setAttribute("ROLE", user.get().getRole() + 1);
                         req.getSession().setAttribute("ROLE", user.get().getRole() + 1);
                         result = IServletConstants.REDIRECT_KEY_WORD + IServletConstants.HOME_PAGE_PATH;

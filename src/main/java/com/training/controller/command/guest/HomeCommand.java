@@ -14,6 +14,8 @@ public class HomeCommand implements Command {
         if (!req.getMethod().equals("GET")){
             log.warn("method != GET");
         }
+        // TODO: 4/18/19 get user from db instead of session 
+        req.setAttribute("USER", req.getSession().getAttribute("USER"));
         return IServletConstants.HOME_PAGE_JSP;
     }
 }

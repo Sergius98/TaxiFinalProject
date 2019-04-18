@@ -24,6 +24,11 @@ public class User {
         this.spendMoney = spendMoney;
     }
 
+    public User getSafe(){
+        this.password = "";
+        return this;
+    }
+
     public int getId() {
         return id;
     }
