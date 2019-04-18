@@ -1,0 +1,102 @@
+[main] ERROR com.training.model.dao.impl.JDBCUserDao  - there is a problem in JDBCUserDao:create
+[main] INFO  com.training.controller.servlet.TaxiServlet  - user was registered
+[main] ERROR com.training.model.dao.impl.JDBCUserDao  - there is a problem in JDBCUserDao:create
+[main] INFO  com.training.controller.servlet.TaxiServlet  - user was registered
+[main] ERROR com.training.model.dao.impl.JDBCUserDao  - there is a problem in JDBCUserDao:create
+[main] INFO  com.training.controller.servlet.TaxiServlet  - user registration failed
+[main] INFO  com.training.model.dao.impl.JDBCUserDaoTest  - user was registered
+[main] ERROR com.training.model.dao.impl.JDBCUserDao  - there is a problem in JDBCUserDao:create
+[main] INFO  com.training.model.dao.impl.JDBCUserDaoTest  - user registration failed
+[main] ERROR com.training.model.dao.impl.JDBCUserDao  - there is a problem in JDBCUserDao:create
+[main] INFO  com.training.model.dao.impl.JDBCUserDaoTest  - user registration failed
+[main] WARN  com.training.model.dao.mappers.UserMapper  - there is a SQLException in UserMapper:extractFromResultSet
+[main] INFO  com.training.model.dao.impl.JDBCUserDaoTest  - user search failed
+[main] WARN  com.training.model.dao.mappers.UserMapper  - there is a SQLException in UserMapper:extractFromResultSet
+[main] WARN  com.training.model.dao.mappers.UserMapper  - Unknown column 'user.u_id' in 'where clause'
+java.sql.SQLSyntaxErrorException: Unknown column 'user.u_id' in 'where clause'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:970)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:1020)
+	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeQuery(DelegatingPreparedStatement.java:122)
+	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeQuery(DelegatingPreparedStatement.java:122)
+	at com.training.model.dao.mappers.UserMapper.extractFromResultSet(UserMapper.java:25)
+	at com.training.model.dao.impl.JDBCUserDao.findById(JDBCUserDao.java:51)
+	at com.training.model.dao.impl.JDBCUserDaoTest.findById(JDBCUserDaoTest.java:40)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:160)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.execution.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:47)
+	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:242)
+	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:70)
+[main] INFO  com.training.model.dao.impl.JDBCUserDaoTest  - user search failed
+[main] WARN  com.training.model.dao.mappers.UserMapper  - there is a SQLException in UserMapper:extractFromResultSet
+[main] WARN  com.training.model.dao.mappers.UserMapper  - Unknown column 'user.id' in 'where clause'
+java.sql.SQLSyntaxErrorException: Unknown column 'user.id' in 'where clause'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:970)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:1020)
+	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeQuery(DelegatingPreparedStatement.java:122)
+	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeQuery(DelegatingPreparedStatement.java:122)
+	at com.training.model.dao.mappers.UserMapper.extractFromResultSet(UserMapper.java:25)
+	at com.training.model.dao.impl.JDBCUserDao.findById(JDBCUserDao.java:51)
+	at com.training.model.dao.impl.JDBCUserDaoTest.findById(JDBCUserDaoTest.java:40)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:160)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.execution.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:47)
+	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:242)
+	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:70)
+[main] INFO  com.training.model.dao.impl.JDBCUserDaoTest  - user search failed
+[main] INFO  com.training.model.dao.impl.JDBCUserDaoTest  - user [1] was found
+[main] INFO  com.training.model.dao.impl.JDBCUserDaoTest  - user {1, admin, null, 1, 0}
+[main] INFO  com.training.model.dao.impl.JDBCUserDaoTest  - user [1] was found
+[main] INFO  com.training.model.dao.impl.JDBCUserDaoTest  - user {1, admin, 1111, 1, 0}
+[main] INFO  com.training.model.dao.impl.JDBCUserDaoTest  - user search failed
+[main] INFO  com.training.model.dao.impl.JDBCUserDaoTest  - user[1] = {1, admin, 1111, 1, 0}
+[main] ERROR com.training.model.dao.impl.JDBCUserDao  - there is a problem in JDBCUserDao:create
+[main] INFO  com.training.model.dao.impl.JDBCUserDaoTest  - user registration failed
+[main] WARN  com.training.model.dao.impl.JDBCUserDao  - there is not a SQLException in JDBCUserDao:close
+[main] INFO  com.training.model.dao.impl.JDBCUserDaoTest  - user[1] = {1, admin, 1111, 1, 0}
+[main] WARN  com.training.model.dao.impl.JDBCUserDao  - there is not a SQLException in JDBCUserDao:close
+[main] INFO  com.training.model.dao.impl.JDBCUserDaoTest  - user[1] = {1, admin, 1111, 1, 0}
+[main] WARN  com.training.model.dao.impl.JDBCUserDao  - there is not a SQLException in JDBCUserDao:close
+[main] ERROR com.training.model.dao.impl.JDBCUserDao  - there is a problem in JDBCUserDao:create
+[main] INFO  com.training.model.dao.impl.JDBCUserDaoTest  - user registration failed
+[main] INFO  com.training.model.dao.impl.JDBCUserDaoTest  - user[1] = {1, admin, 1111, 1, 0}
+[main] INFO  com.training.model.dao.impl.JDBCUserDaoTest  - user[1] = {1, admin, 1111, 1, 0}

@@ -1,0 +1,37 @@
+.my_main{
+	margin:10px 20px 10px 20px;
+}
+.my_top{
+	margin:10px 10px 10px 10px;
+}
+.my_small_left{
+	margin:5px 5px 5px 5px;
+	width:95%;
+}
+.my_left{
+	margin:2px 2px 2px 2px;
+}
+.my_bottom{
+	margin:10px 10px 10px 10px;
+}
+.my_logo{
+	font-family: Brush Script MT, "Comic Sans MS", cursive;
+}
+.my_papers{
+	margin:2px 10px 10px 10px;
+
+}
+.width100p{
+	width:100%;
+}
+.my_quote{
+    border: 1px solid white;
+    padding: 25px;
+}
+.carousel-inner img {
+	height: 550px;
+	width: inherit;
+}
+.my_map{
+	width: 100%;
+}

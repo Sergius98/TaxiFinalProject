@@ -1,0 +1,22 @@
+.my_block{
+    background-color: #eeeeee;
+    border-radius: 25px;
+    margin: 5px;
+    padding: 5px;
+}
+.my_white_block{
+     background-color: #ffffff;
+     border-radius: 25px;
+     margin: 5px;
+     padding: 5px;
+ }
+.my_block > .text-left{
+    padding: 5px 20px;
+}
+.my_main_block{
+    padding: 5px 10%;
+}
+.my_head_block{
+	padding: 15px; 
+	margin-bottom: 15px; 
+}
