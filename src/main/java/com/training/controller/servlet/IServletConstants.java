@@ -18,6 +18,7 @@ public interface IServletConstants {
     String ACCESS_FILTER_PATH = SERVLET_PATH;
     String LANGUAGE_FILTER_PATH = SERVLET_PATH;
     String CURRENCY_FILTER_PATH = SERVLET_PATH;
+    String ENCODING_FILTER_PATH = SERVLET_PATH;
 
     String REDIRECT_KEY_WORD = "redirect:";
 
