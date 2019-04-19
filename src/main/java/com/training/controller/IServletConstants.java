@@ -33,15 +33,18 @@ public interface IServletConstants {
     String CURR_ATTRIBUTE_KEY_WORD = "curr";
     String LANG_ATTRIBUTE_KEY_WORD = "lang";
     String ACTION_URI_ATTRIBUTE_KEY_WORD = "ACTION_URI";
+    String DISCOUNTS_LIST_KEY_WORD = "DISCOUNTS_LIST";
 
     // paths shouldn't be changed unless there is some changes in jsp
     String HOME_PAGE_PATH = "/home";
     String LOGIN_PAGE_PATH = "/login";
     String SIGNUP_PAGE_PATH = "/signup";
     String LOGOUT_PAGE_PATH = "/logout";
+    String DISCOUNTS_PAGE_PATH = "/discounts";
 
 
     String HOME_PAGE_JSP = "/WEB-INF/view/pages/home.jsp";
     String LOGIN_PAGE_JSP = "/WEB-INF/view/pages/login.jsp";
     String SIGNUP_PAGE_JSP = "/WEB-INF/view/pages/signup.jsp";
+    String DISCOUNTS_PAGE_JSP = "/WEB-INF/view/pages/discounts.jsp";
 }

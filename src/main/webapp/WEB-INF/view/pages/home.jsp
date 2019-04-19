@@ -27,7 +27,7 @@
             <%@include file="/WEB-INF/view/includes/user/home.jsp" %>
           </c:when>
           <c:otherwise>
-            <%@include file="/WEB-INF/view/includes/errors/dont_have_legitime_role.jsp" %>
+            <fmt:message key="you_shouldn't_see_it"/><br>
           </c:otherwise>
         </c:choose>
       </div>

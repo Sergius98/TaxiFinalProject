@@ -11,6 +11,9 @@ public class Discount {
     private Optional<Integer> MinimalThreshold = Optional.empty();
     private int discount;
 
+    public Discount() {
+
+    }
     public Discount(int id, int discount) {
         this.id = id;
         this.discount = discount;
@@ -20,40 +23,40 @@ public class Discount {
         return CarClass;
     }
 
-    public void setCarClass(Optional<Integer> carClass) {
-        CarClass = carClass;
+    public void setCarClass(Integer carClass) {
+        CarClass = Optional.of(carClass);
     }
 
     public Optional<Integer> getSourceStreetId() {
         return SourceStreetId;
     }
 
-    public void setSourceStreetId(Optional<Integer> sourceStreetId) {
-        SourceStreetId = sourceStreetId;
+    public void setSourceStreetId(Integer sourceStreetId) {
+        SourceStreetId = Optional.of(sourceStreetId);
     }
 
     public Optional<Integer> getDestinationStreetId() {
         return DestinationStreetId;
     }
 
-    public void setDestinationStreetId(Optional<Integer> destinationStreetId) {
-        DestinationStreetId = destinationStreetId;
+    public void setDestinationStreetId(Integer destinationStreetId) {
+        DestinationStreetId = Optional.of(destinationStreetId);
     }
 
     public Optional<Integer> getMinimalBill() {
         return MinimalBill;
     }
 
-    public void setMinimalBill(Optional<Integer> minimalBill) {
-        MinimalBill = minimalBill;
+    public void setMinimalBill(Integer minimalBill) {
+        MinimalBill = Optional.of(minimalBill);
     }
 
     public Optional<Integer> getMinimalThreshold() {
         return MinimalThreshold;
     }
 
-    public void setMinimalThreshold(Optional<Integer> minimalThreshold) {
-        MinimalThreshold = minimalThreshold;
+    public void setMinimalThreshold(Integer minimalThreshold) {
+        MinimalThreshold = Optional.of(minimalThreshold);
     }
 
     public int getDiscount() {

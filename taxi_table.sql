@@ -39,7 +39,7 @@ CREATE TABLE `test`.`loyaltyThresholds`(
    UNIQUE (`id`)
 );
 
-CREATE TABLE `test`.`discount`(
+CREATE TABLE `test`.`discounts`(
    `id`                    INT              NOT NULL  AUTO_INCREMENT,
    `carClass`              INT    			 ,
    `sourceStreetId`        INT      		 ,
@@ -50,3 +50,5 @@ CREATE TABLE `test`.`discount`(
    PRIMARY KEY (`id`),
    UNIQUE (`id`)
 );
+
+INSERT

@@ -38,6 +38,11 @@
                             <fmt:message key="home"/>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}${PATH}/discounts">
+                            <fmt:message key="discounts"/>
+                        </a>
+                    </li>
                     <!-- import user or admin or guest header -->
                     <c:choose>
                         <c:when test="${ROLE == 0}">
