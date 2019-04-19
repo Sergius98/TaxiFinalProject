@@ -1,6 +1,6 @@
 package com.training.controller.command;
 
-import com.training.controller.servlet.IServletConstants;
+import com.training.controller.IServletConstants;
 
 import javax.servlet.http.HttpServletRequest;
 

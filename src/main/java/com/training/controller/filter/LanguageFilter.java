@@ -1,6 +1,6 @@
 package com.training.controller.filter;
 
-import com.training.controller.servlet.IServletConstants;
+import com.training.controller.IServletConstants;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;
@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Optional;
-import java.util.stream.IntStream;
 
 @WebFilter(urlPatterns = IServletConstants.LANGUAGE_FILTER_PATH)
 public class LanguageFilter implements Filter {

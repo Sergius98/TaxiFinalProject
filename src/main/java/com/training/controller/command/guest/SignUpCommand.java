@@ -1,8 +1,9 @@
 package com.training.controller.command.guest;
 
 import com.training.controller.command.Command;
-import com.training.controller.servlet.IServletConstants;
+import com.training.controller.IServletConstants;
 import com.training.controller.utill.impl.Authorization;
+import com.training.controller.utill.impl.UserDataManager;
 import com.training.controller.utill.impl.UserExtractor;
 import org.apache.log4j.Logger;
 
@@ -11,8 +12,8 @@ import java.util.NoSuchElementException;
 
 public class SignUpCommand implements Command {
     private Logger log = Logger.getLogger(SignUpCommand.class);
-    private UserExtractor extractor = new UserExtractor();
-    private Authorization authorization = new Authorization(extractor);
+
+    private Authorization authorization = new Authorization(new UserExtractor(), new UserDataManager());
 
     @Override
     public String execute(HttpServletRequest req) {

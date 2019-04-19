@@ -1,6 +1,6 @@
 package com.training.controller.filter;
 
-import com.training.controller.servlet.IServletConstants;
+import com.training.controller.IServletConstants;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;

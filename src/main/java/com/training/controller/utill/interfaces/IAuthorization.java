@@ -6,5 +6,5 @@ import java.util.Optional;
 public interface IAuthorization {
     Optional<String> signUp(HttpServletRequest req);
     Optional<String> logIn(HttpServletRequest req);
-    void logOut(HttpServletRequest req, int userId);
+    void logOut(HttpServletRequest req);
 }

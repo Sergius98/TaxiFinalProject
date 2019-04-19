@@ -1,6 +1,6 @@
 package com.training.controller.filter;
 
-import com.training.controller.servlet.IServletConstants;
+import com.training.controller.IServletConstants;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

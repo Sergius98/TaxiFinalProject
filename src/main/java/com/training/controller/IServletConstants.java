@@ -1,4 +1,4 @@
-package com.training.controller.servlet;
+package com.training.controller;
 
 
 public interface IServletConstants {
