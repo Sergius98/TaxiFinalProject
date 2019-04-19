@@ -8,6 +8,8 @@ import com.training.controller.command.guest.HomeCommand;
 import com.training.controller.command.guest.LoginCommand;
 import com.training.controller.command.guest.SignUpCommand;
 import com.training.controller.command.user.LogoutCommand;
+import com.training.controller.utill.impl.AccessPathExtractor;
+import com.training.controller.utill.interfaces.IExtractor;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -25,6 +27,7 @@ public class TaxiServlet extends HttpServlet {
     private static final Logger log = Logger.getLogger(TaxiServlet.class);
     private HashMap<String, Command> commands = new HashMap<>();
     private Command defaultPage = new WrongPathCommand();
+    AccessPathExtractor accessPathExtractor = new AccessPathExtractor();
 
     /*
     static private HashMap<String, Command> commands = Stream.of(new Object[][] {
@@ -60,15 +63,10 @@ public class TaxiServlet extends HttpServlet {
         process(req,resp);
     }
 
-    // TODO: 4/18/19 wrong paths in error jsp
-    // TODO: 4/18/19 move accessPath(PATH_ATTRIBUTE_KEY_WORD) creation into an utill
-    //      and call it from accessfilter and where user is changed
-    //      it should help
     private void process(HttpServletRequest req, HttpServletResponse resp)
             throws IOException, ServletException {
         int role = 0;
         String accessPath;
-        HttpSession session = req.getSession();
         String path = req.getRequestURI().replaceAll(IServletConstants.ROOT_PATH, "");
         log.info("path:" + path);
 
@@ -80,19 +78,7 @@ public class TaxiServlet extends HttpServlet {
 
         log.debug("class:" + command.getClass().getName());
 
-        // set role paths
-        if (Optional.ofNullable(session.getAttribute(IServletConstants.ROLE_ATTRIBUTE_KEY_WORD)).isPresent()){
-            role = (int)session.getAttribute(IServletConstants.ROLE_ATTRIBUTE_KEY_WORD);
-        }
-
-        accessPath = IServletConstants.ROOT_PATH;
-        try{
-            accessPath += IServletConstants.ROLES_PREFIXES[role];
-        } catch (Exception e){
-            accessPath += IServletConstants.ROLES_PREFIXES[IServletConstants.LOWEST_ACCESS_LEVEL];
-        }
-
-        req.setAttribute(IServletConstants.PATH_ATTRIBUTE_KEY_WORD, accessPath);
+        accessPath = accessPathExtractor.extract(req).get();
 
         // do redirect if needed
         if ( page.contains(IServletConstants.REDIRECT_KEY_WORD) ) {

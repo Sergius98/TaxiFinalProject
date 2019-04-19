@@ -1,6 +1,7 @@
 package com.training.controller.filter;
 
 import com.training.controller.IServletConstants;
+import com.training.controller.utill.impl.AccessPathExtractor;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;
@@ -16,6 +17,9 @@ public class AccessFilter implements Filter {
     private Logger log = Logger.getLogger(AccessFilter.class);
 
 
+    AccessPathExtractor accessPathExtractor = new AccessPathExtractor();
+
+
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
             throws IOException, ServletException {
@@ -29,6 +33,8 @@ public class AccessFilter implements Filter {
             log.warn("unauthorized access");
             // TODO: 4/18/19 EXCEPTION
             //throw new NoAccessException("You don`t have permission to visit this page");
+
+            accessPathExtractor.extract((HttpServletRequest) req).get();
             throw new IOException("user doesn't have permission to visit this page");
         }
         chain.doFilter(req, resp);
