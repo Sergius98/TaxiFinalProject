@@ -6,6 +6,7 @@ import com.training.model.dao.interfaces.*;
 public abstract class DaoFactory {
     private static DaoFactory daoFactory;
 
+    public abstract CarDao createCarDao();
     public abstract DiscountDao createDiscountDao();
     public abstract LoyaltyThresholdDao createLoyaltyThresholdDao();
     public abstract StreetDao createStreetDao();

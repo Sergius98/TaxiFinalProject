@@ -2,6 +2,7 @@ package com.training.model.dao.impl;
 
 import com.training.model.dao.*;
 import com.training.model.dao.interfaces.*;
+import com.training.model.entity.Car;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -16,6 +17,11 @@ public class JDBCDaoFactory extends DaoFactory {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public CarDao createCarDao() {
+        return new DummyCarDao(null);
     }
 
     @Override

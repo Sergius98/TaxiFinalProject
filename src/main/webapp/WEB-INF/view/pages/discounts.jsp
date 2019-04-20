@@ -17,14 +17,15 @@
 
 
 <c:forEach var = "i" begin = "0" end = "${DISCOUNTS_LIST.size() - 1}">
-    <%-- todo: take begin and end for pagenation or do it through sql --%>
+    <%-- todo: take begin and end for pagenation --%>
 
     <div class="row my_block">
         <div class="col-lg-3 text-left"></div>
         <div class="col-lg-6 text-left">
         <%-- todo: print only if not null--%>
             <c:if test="${DISCOUNTS_LIST.get(i).getCarClass().isPresent()}">
-                <fmt:message key="car_Class"/>${DISCOUNTS_LIST.get(i).getCarClass().get()}<br>
+                <fmt:message key="car_Class"/>
+                <fmt:message key="${CARS_LIST.get(DISCOUNTS_LIST.get(i).getCarClass().get()).name}"/><br>
             </c:if>
             <c:if test="${DISCOUNTS_LIST.get(i).getSourceStreetId().isPresent()}">
                 <fmt:message key="source_street"/>${DISCOUNTS_LIST.get(i).getSourceStreetId().get()}<br>

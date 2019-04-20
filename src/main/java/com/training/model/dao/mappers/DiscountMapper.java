@@ -16,12 +16,43 @@ public class DiscountMapper {
     public Discount extractDiscount(ResultSet set) throws SQLException {
         Discount discount = new Discount();
         discount.setId(set.getInt("id"));
-        discount.setCarClass(set.getInt("carClass"));
-        discount.setSourceStreetId(set.getInt("sourceStreetID"));
-        discount.setDestinationStreetId(set.getInt("destinationStreetId"));
-        discount.setMinimalBill(set.getInt("minimalBill"));
-        discount.setMinimalThreshold(set.getInt("minimalThreshold"));
-        discount.setDiscount(set.getInt("discount"));
+        log.debug("id:" + set.getInt("id"));
+        try {
+            discount.setCarClass((int) set.getObject("carClass"));
+            log.debug("carClass:" + discount.getCarClass());
+        } catch (NullPointerException e){
+            log.debug("carClass is empty");
+        }
+        try {
+            discount.setSourceStreetId((int) set.getObject("sourceStreetID"));
+            log.debug("sourceStreetID:" + discount.getSourceStreetId());
+        } catch (NullPointerException e){
+            log.debug("sourceStreetID is empty");
+        }
+        try {
+            discount.setDestinationStreetId((int) set.getObject("destinationStreetId"));
+            log.debug("destinationStreetId:" + discount.getDestinationStreetId());
+        } catch (NullPointerException e){
+            log.debug("destinationStreetId is empty");
+        }
+        try {
+            discount.setMinimalBill((int) set.getObject("minimalBill"));
+            log.debug("minimalBill:" + discount.getMinimalBill());
+        } catch (NullPointerException e){
+            log.debug("minimalBill is empty");
+        }
+        try {
+            discount.setMinimalThreshold((int) set.getObject("minimalThreshold"));
+            log.debug("minimalThreshold:" + discount.getMinimalThreshold());
+        } catch (NullPointerException e){
+            log.debug("minimalThreshold is empty");
+        }
+        try {
+            discount.setDiscount((int) set.getObject("discount"));
+            log.debug("discount:" + discount.getDiscount());
+        } catch (NullPointerException e){
+            log.debug("discount is empty");
+        }
         return discount;
     }
 
