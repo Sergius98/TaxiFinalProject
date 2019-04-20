@@ -25,6 +25,7 @@ public class DiscountsCommand implements Command {
     @Override
     public String execute(HttpServletRequest req) {
         List<Discount> discounts = new ArrayList<>();
+
         try(DiscountDao dao = DaoFactory.getInstance().createDiscountDao()){
             discounts = dao.findAll();
             req.setAttribute(IServletConstants.DISCOUNTS_LIST_KEY_WORD, discounts);
@@ -42,19 +43,23 @@ public class DiscountsCommand implements Command {
             log.info("street list extraction was failed with :" + e.getMessage());
         }
 
-        int page;
-        try{
-            page = Integer.valueOf(
-                    req.getParameter(IServletConstants.PAGE_NUMBER_KEY_WORD));
-        } catch (NumberFormatException e){
-            page = 1;
+        Optional<Integer> page = Optional.ofNullable(
+                (Integer)((HttpServletRequest) req).getSession()
+                        .getAttribute(IServletConstants.PAGE_NUMBER_KEY_WORD));
+        Optional<String> newPage = Optional.ofNullable(
+                req.getParameter(IServletConstants.PAGE_NUMBER_KEY_WORD));
+
+        if (newPage.isPresent()){
+            try{
+                page = Optional.of(Integer.valueOf(req.getParameter(
+                                IServletConstants.PAGE_NUMBER_KEY_WORD)));
+            } catch (NumberFormatException e){
+                page = Optional.of(1);
+            }
         }
 
-        pagenizer.pagenize(
-                req, IServletConstants.PAGE_ELEMENTS_COUNT, discounts, page);
-        // TODO: 4/19/19 pagination through request parameters
-        //              if null - redirect to first page
-        //              if too big - redirect to the last possible page
+        pagenizer.pagenize(req, IServletConstants.PAGE_ELEMENTS_COUNT,
+                discounts, page.orElse(1));
 
         return IServletConstants.DISCOUNTS_PAGE_JSP;
     }

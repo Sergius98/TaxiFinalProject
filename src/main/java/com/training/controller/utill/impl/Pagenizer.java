@@ -30,5 +30,6 @@ public class Pagenizer implements IPagenizer {
         req.setAttribute(IServletConstants.FIRST_ELEMENT_KEY_WORD, begin);
         req.setAttribute(IServletConstants.LAST_ELEMENT_KEY_WORD, end);
         req.setAttribute(IServletConstants.PAGE_NUMBER_KEY_WORD, end/counter + 1);
+        req.getSession().setAttribute(IServletConstants.PAGE_NUMBER_KEY_WORD, end/counter + 1);
     }
 }

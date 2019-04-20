@@ -39,7 +39,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}${PATH}/discounts">
+                        <a class="nav-link" href="${pageContext.request.contextPath}${PATH}/discounts?page=1">
                             <fmt:message key="discounts"/>
                         </a>
                     </li>
