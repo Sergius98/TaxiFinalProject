@@ -36,12 +36,18 @@
                 ${STREETS_LIST.get(DISCOUNTS_LIST.get(i).getDestinationStreetId().get()-1).getNameString(sessionScope.lang)}<br>
             </c:if>
             <c:if test="${DISCOUNTS_LIST.get(i).getMinimalBill().isPresent()}">
-                <fmt:message key="minimal_bill"/>${DISCOUNTS_LIST.get(i).getMinimalBill().get()}<br>
+                <fmt:message key="minimal_bill"/>
+                ${CURRENCY_FORMATTER.format(DISCOUNTS_LIST.get(i).getMinimalBill())}
+                <fmt:message key="${CURRENCY}_s"/><br>
             </c:if>
             <c:if test="${DISCOUNTS_LIST.get(i).getMinimalThreshold().isPresent()}">
-                <fmt:message key="minimal_threshold"/>${DISCOUNTS_LIST.get(i).getMinimalThreshold().get()}<br>
+                <fmt:message key="minimal_threshold"/>
+                ${CURRENCY_FORMATTER.format(DISCOUNTS_LIST.get(i).getMinimalThreshold())}
+                <fmt:message key="${CURRENCY}_s"/><br>
             </c:if>
-            <fmt:message key="discount"/>${DISCOUNTS_LIST.get(i).getDiscount()}<br>
+            <fmt:message key="discount"/>
+                ${CURRENCY_FORMATTER.format(DISCOUNTS_LIST.get(i).getDiscount())}
+            <fmt:message key="${CURRENCY}_s"/><br>
 
         </div>
         <div class="col-lg-3 text-left"></div>

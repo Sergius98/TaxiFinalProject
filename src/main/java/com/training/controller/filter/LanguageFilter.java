@@ -18,10 +18,13 @@ public class LanguageFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
             throws IOException, ServletException {
 
-        Optional<String> language = Optional.ofNullable((String)req.getParameter(IServletConstants.LANG_ATTRIBUTE_KEY_WORD));
-        if (language.isPresent()){
+        Optional<String> language = Optional.ofNullable(
+                (String)((HttpServletRequest) req).getSession()
+                        .getAttribute(IServletConstants.LANG_ATTRIBUTE_KEY_WORD));
+        Optional<String> newLanguage = Optional.ofNullable((String)req.getParameter(IServletConstants.LANG_ATTRIBUTE_KEY_WORD));
+        if (newLanguage.isPresent()){
             ((HttpServletRequest)req).getSession().setAttribute(IServletConstants.LANG_ATTRIBUTE_KEY_WORD, req.getParameter(IServletConstants.LANG_ATTRIBUTE_KEY_WORD));
-        } else {
+        } else if (!language.isPresent()){
             ((HttpServletRequest)req).getSession().setAttribute(IServletConstants.LANG_ATTRIBUTE_KEY_WORD, IServletConstants.LANGUAGES_LIST[0]);
         }
 

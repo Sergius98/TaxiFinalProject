@@ -36,19 +36,20 @@ public class DiscountMapper {
             log.debug("destinationStreetId is empty");
         }
         try {
-            discount.setMinimalBill((int) set.getObject("minimalBill"));
+            // TODO: 4/20/19 change datatype in table from int to long
+            discount.setMinimalBill((long)(int) set.getObject("minimalBill"));
             log.debug("minimalBill:" + discount.getMinimalBill());
         } catch (NullPointerException e){
             log.debug("minimalBill is empty");
         }
         try {
-            discount.setMinimalThreshold((int) set.getObject("minimalThreshold"));
+            discount.setMinimalThreshold((long)(int) set.getObject("minimalThreshold"));
             log.debug("minimalThreshold:" + discount.getMinimalThreshold());
         } catch (NullPointerException e){
             log.debug("minimalThreshold is empty");
         }
         try {
-            discount.setDiscount((int) set.getObject("discount"));
+            discount.setDiscount((long)(int) set.getObject("discount"));
             log.debug("discount:" + discount.getDiscount());
         } catch (NullPointerException e){
             log.debug("discount is empty");

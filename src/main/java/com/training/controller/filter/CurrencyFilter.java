@@ -1,6 +1,7 @@
 package com.training.controller.filter;
 
 import com.training.controller.IServletConstants;
+import com.training.controller.utill.impl.CurrencyFormatter;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;
@@ -29,6 +30,11 @@ public class CurrencyFilter implements Filter {
         } else {
             req.setAttribute(IServletConstants.CURRENCY_ATTRIBUTE_KEY_WORD, IServletConstants.CURRENCY_LIST[0]);
         }
+
+        req.setAttribute(IServletConstants.CURRENCY_FORMATTER_KEY_WORD,
+                new CurrencyFormatter(
+                        (String)req.getAttribute(IServletConstants.CURRENCY_ATTRIBUTE_KEY_WORD)
+                ));
 
         chain.doFilter(req, resp);
 

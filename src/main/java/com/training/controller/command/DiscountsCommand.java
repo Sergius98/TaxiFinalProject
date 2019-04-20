@@ -4,6 +4,7 @@ import com.training.controller.IServletConstants;
 import com.training.controller.command.Command;
 import com.training.controller.command.guest.LoginCommand;
 import com.training.controller.utill.impl.Authorization;
+import com.training.controller.utill.impl.CurrencyFormatter;
 import com.training.controller.utill.impl.UserDataManager;
 import com.training.controller.utill.impl.UserExtractor;
 import com.training.model.dao.DaoFactory;
@@ -37,6 +38,7 @@ public class DiscountsCommand implements Command {
         } catch (Exception e){
             log.info("street list extraction was failed with :" + e.getMessage());
         }
+
         // TODO: 4/19/19 pagination through request parameters
         //              if null - redirect to first page
         //              if too big - redirect to the last possible page

@@ -1,15 +1,16 @@
 package com.training.model.entity;
 
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 public class Discount {
     private int id;
     private Optional<Integer> CarClass = Optional.empty();
     private Optional<Integer> SourceStreetId = Optional.empty();
     private Optional<Integer> DestinationStreetId = Optional.empty();
-    private Optional<Integer> MinimalBill = Optional.empty();
-    private Optional<Integer> MinimalThreshold = Optional.empty();
-    private int discount;
+    private Optional<Long> MinimalBill = Optional.empty();
+    private Optional<Long> MinimalThreshold = Optional.empty();
+    private long discount = 0;
 
     public Discount() {
 
@@ -43,27 +44,27 @@ public class Discount {
         DestinationStreetId = Optional.of(destinationStreetId);
     }
 
-    public Optional<Integer> getMinimalBill() {
+    public Optional<Long> getMinimalBill() {
         return MinimalBill;
     }
 
-    public void setMinimalBill(Integer minimalBill) {
+    public void setMinimalBill(Long minimalBill) {
         MinimalBill = Optional.of(minimalBill);
     }
 
-    public Optional<Integer> getMinimalThreshold() {
+    public Optional<Long> getMinimalThreshold() {
         return MinimalThreshold;
     }
 
-    public void setMinimalThreshold(Integer minimalThreshold) {
+    public void setMinimalThreshold(Long minimalThreshold) {
         MinimalThreshold = Optional.of(minimalThreshold);
     }
 
-    public int getDiscount() {
+    public long getDiscount() {
         return discount;
     }
 
-    public void setDiscount(int discount) {
+    public void setDiscount(long discount) {
         this.discount = discount;
     }
 
