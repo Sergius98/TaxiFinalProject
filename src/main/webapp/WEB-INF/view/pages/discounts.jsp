@@ -112,12 +112,16 @@
                                     </c:forEach>
                                 </select>
                             </div>
+
                             <fmt:message key="minimal_bill"/>
-                            <input class="form-control" type="text" name="minimal_bill" placeholder="" value="1" >
+                            <input class="form-control" type="text" name="minimal_bill" placeholder="" value="1" data-toggle="tooltip"
+                                   data-placement="right" title="<fmt:message key="input_minimal_bill_message"/>">
                             <fmt:message key="minimal_threshold"/>
-                            <input class="form-control" type="text" name="minimal_threshold" placeholder="" value="1" >
+                            <input class="form-control" type="text" name="minimal_threshold" placeholder="" value="1" data-toggle="tooltip"
+                                   data-placement="right" title="<fmt:message key="input_minimal_threshold_message"/>">
                             <fmt:message key="discount"/>
-                            <input class="form-control" type="text" name="discount" placeholder="" value="1" >
+                            <input class="form-control" type="text" name="discount" placeholder="" value="1" data-toggle="tooltip"
+                                   data-placement="right" title="<fmt:message key="input_discount_message"/>">
 
                             <button type="submit" class="btn btn-outline-dark" data-toggle="tooltip"
                                     data-placement="top" title="<fmt:message key="new_discount_message"/>">
