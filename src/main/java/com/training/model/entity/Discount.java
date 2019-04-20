@@ -1,16 +1,16 @@
 package com.training.model.entity;
 
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 public class Discount {
-    private int id;
-    private Optional<Integer> CarClass = Optional.empty();
-    private Optional<Integer> SourceStreetId = Optional.empty();
-    private Optional<Integer> DestinationStreetId = Optional.empty();
-    private Optional<Long> MinimalBill = Optional.empty();
-    private Optional<Long> MinimalThreshold = Optional.empty();
+    private int id;private Optional<Integer> carClass = Optional.empty();
+    private Optional<Integer> sourceStreetId = Optional.empty();
+    private Optional<Integer> destinationStreetId = Optional.empty();
+    private Optional<Long> minimalBill = Optional.empty();
+    private Optional<Long> minimalThreshold = Optional.empty();
     private long discount = 0;
+
+    // constructors
 
     public Discount() {
 
@@ -20,44 +20,58 @@ public class Discount {
         this.discount = discount;
     }
 
+    public Discount(Optional<Integer> carClass, Optional<Integer> sourceStreetId,
+                    Optional<Integer> destinationStreetId,
+                    Optional<Long> minimalBill, Optional<Long> minimalThreshold,
+                    long discount) {
+        this.carClass = carClass;
+        this.sourceStreetId = sourceStreetId;
+        this.destinationStreetId = destinationStreetId;
+        this.minimalBill = minimalBill;
+        this.minimalThreshold = minimalThreshold;
+        this.discount = discount;
+    }
+
+    // getters/setters
+
     public Optional<Integer> getCarClass() {
-        return CarClass;
+        return carClass;
     }
 
     public void setCarClass(Integer carClass) {
-        CarClass = Optional.of(carClass);
+        this.carClass = Optional.of(carClass);
     }
 
     public Optional<Integer> getSourceStreetId() {
-        return SourceStreetId;
+        return sourceStreetId;
     }
 
     public void setSourceStreetId(Integer sourceStreetId) {
-        SourceStreetId = Optional.of(sourceStreetId);
+        this.sourceStreetId = Optional.of(sourceStreetId);
     }
 
     public Optional<Integer> getDestinationStreetId() {
-        return DestinationStreetId;
+        return destinationStreetId;
     }
 
     public void setDestinationStreetId(Integer destinationStreetId) {
-        DestinationStreetId = Optional.of(destinationStreetId);
+        this.destinationStreetId = Optional.of(destinationStreetId);
     }
 
     public Optional<Long> getMinimalBill() {
-        return MinimalBill;
+        return minimalBill;
     }
 
     public void setMinimalBill(Long minimalBill) {
-        MinimalBill = Optional.of(minimalBill);
+        this.minimalBill = Optional.of(minimalBill);
     }
 
     public Optional<Long> getMinimalThreshold() {
-        return MinimalThreshold;
+        return minimalThreshold;
     }
 
     public void setMinimalThreshold(Long minimalThreshold) {
-        MinimalThreshold = Optional.of(minimalThreshold);
+        this.minimalThreshold = Optional.of(minimalThreshold);
     }
 
     public long getDiscount() {

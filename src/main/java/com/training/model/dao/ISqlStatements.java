@@ -11,9 +11,9 @@ public interface ISqlStatements {
     String READ_USER_BY_NICKNAME = "select * from " + DB_NAME + ".`users`" +
             "where `users`.`nickname` =(?)";
 
-    String INSERT_INTO_DISCOUNT = "INSERT INTO " + DB_NAME + ".`discounts`" +
-            " `carClass`, `sourceStreetId`, `destinationStreetId`, " +
-            "`minimalBill`, `minimalThreshold`, `discount` VALUES" +
+    String INSERT_INTO_DISCOUNT = "INSERT INTO " + DB_NAME + ".`discounts` " +
+            " (`carClass`, `sourceStreetId`, `destinationStreetId`, " +
+            "`minimalBill`, `minimalThreshold`, `discount`) VALUES" +
             " (?, ?, ?, ?, ?, ?)";
     String READ_DISCOUNT_BY_ID = "select * from " + DB_NAME + ".`discounts`" +
             "where `discounts`.`id` =(?)";

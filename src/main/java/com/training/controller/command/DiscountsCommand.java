@@ -20,7 +20,7 @@ public class DiscountsCommand implements Command {
     private static final Logger log = Logger.getLogger(DiscountsCommand.class);
 
     // TODO: 4/20/19 move to constructor
-    Pagenizer pagenizer = new Pagenizer();
+    private Pagenizer pagenizer = new Pagenizer();
 
     @Override
     public String execute(HttpServletRequest req) {

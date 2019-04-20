@@ -15,16 +15,16 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class Authorization implements IAuthorization {
     private Logger log = Logger.getLogger(Authorization.class);
-    // TODO: 4/19/19 turn into singleton instead of static references
+    // TODO: 4/19/19 turn Authorization into singleton instead of static references
     private static Set<Integer> active_users = ConcurrentHashMap.newKeySet();
     //private static HashSet<Integer> active_users = new HashSet<>();
-
+// TODO: 4/20/19 move to constructor
     private Localization localization = new Localization();
 
-    private IExtractor extractor;
-    IUserDataManeger userDataManager;
+    private UserExtractor extractor;
+    private IUserDataManeger userDataManager;
 
-    public Authorization(IExtractor extractor, IUserDataManeger userDataManager){
+    public Authorization(UserExtractor extractor, IUserDataManeger userDataManager){
         this.extractor = extractor;
         this.userDataManager = userDataManager;
     }

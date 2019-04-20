@@ -7,11 +7,10 @@ import com.training.model.dao.mappers.UserMapper;
 import com.training.model.entity.Discount;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class JDBCDiscountDao implements DiscountDao {
@@ -23,9 +22,52 @@ public class JDBCDiscountDao implements DiscountDao {
         this.connection = connection;
     }
 
+    private void setIntOrNull(PreparedStatement prepStatement, int id,
+                              Optional<Integer> value) throws SQLException {
+        try{
+            prepStatement.setInt(id, value.get());
+        } catch (NoSuchElementException e){
+            prepStatement.setNull(id, Types.INTEGER);
+        }
+    }
+
+    private void setLongOrNull(PreparedStatement prepStatement, int id,
+                               Optional<Long> value) throws SQLException {
+        try{
+            // TODO: 4/20/19 change to bigint (sql`s Long)
+            prepStatement.setInt(id, Integer.valueOf(String.valueOf(value.get())));
+        } catch (NoSuchElementException e){
+            // TODO: 4/20/19 change to bigint (sql`s Long)
+            prepStatement.setNull(id, Types.INTEGER);
+        }
+    }
+
+
     @Override
     public boolean create(Discount entity) {
-        return false;
+
+        boolean isSuccessful = false;
+
+        try (PreparedStatement prepStatement = connection.prepareStatement(
+                ISqlStatements.INSERT_INTO_DISCOUNT)) {
+            setIntOrNull(prepStatement, 1, entity.getCarClass());
+            setIntOrNull(prepStatement, 2, entity.getSourceStreetId());
+            setIntOrNull(prepStatement, 3, entity.getDestinationStreetId());
+            setLongOrNull(prepStatement, 4, entity.getMinimalBill());
+            setLongOrNull(prepStatement, 5, entity.getMinimalThreshold());
+            prepStatement.setLong(6, entity.getDiscount());
+
+            log.error("there is a problem in create before this message");
+            prepStatement.executeUpdate();
+            isSuccessful = true;
+        } catch (SQLIntegrityConstraintViolationException e) {
+            log.error("there is a problem in create");
+            log.debug(e.getMessage(), e);
+        } catch (SQLException e) {
+            log.warn("there is a SQLException in create");
+            log.debug(e.getMessage(), e);
+        }
+        return isSuccessful;
     }
 
     @Override

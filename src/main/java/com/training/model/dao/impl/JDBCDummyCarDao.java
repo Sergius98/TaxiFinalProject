@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-public class DummyCarDao implements CarDao {
+public class JDBCDummyCarDao implements CarDao {
     private static final List<Car> cars = Collections.synchronizedList(new ArrayList<Car>());
 
     static{
@@ -22,7 +22,7 @@ public class DummyCarDao implements CarDao {
         cars.add(new Car(cars.size(), "lux", 2000));
     }
 
-    DummyCarDao(Connection connection) {
+    JDBCDummyCarDao(Connection connection) {
     }
 
     @Override

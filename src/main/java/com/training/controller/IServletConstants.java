@@ -50,6 +50,7 @@ public interface IServletConstants {
     String LOGOUT_PAGE_PATH = "/logout";
     String DISCOUNTS_PAGE_PATH = "/discounts";
     String DISCOUNTS_DELETE_PAGE_PATH = "/discounts/delete";
+    String DISCOUNTS_ADD_PAGE_PATH = "/discounts/add";
 
 
     String HOME_PAGE_JSP = "/WEB-INF/view/pages/home.jsp";
