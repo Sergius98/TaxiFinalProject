@@ -3,10 +3,7 @@ package com.training.controller.command;
 import com.training.controller.IServletConstants;
 import com.training.controller.command.Command;
 import com.training.controller.command.guest.LoginCommand;
-import com.training.controller.utill.impl.Authorization;
-import com.training.controller.utill.impl.CurrencyFormatter;
-import com.training.controller.utill.impl.UserDataManager;
-import com.training.controller.utill.impl.UserExtractor;
+import com.training.controller.utill.impl.*;
 import com.training.model.dao.DaoFactory;
 import com.training.model.dao.interfaces.CarDao;
 import com.training.model.dao.interfaces.DiscountDao;
@@ -15,16 +12,22 @@ import com.training.model.entity.Discount;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class DiscountsCommand implements Command {
     private static final Logger log = Logger.getLogger(DiscountsCommand.class);
 
+    // TODO: 4/20/19 move to constructor
+    Pagenizer pagenizer = new Pagenizer();
 
     @Override
     public String execute(HttpServletRequest req) {
-
+        List<Discount> discounts = new ArrayList<>();
         try(DiscountDao dao = DaoFactory.getInstance().createDiscountDao()){
-            req.setAttribute(IServletConstants.DISCOUNTS_LIST_KEY_WORD, dao.findAll());
+            discounts = dao.findAll();
+            req.setAttribute(IServletConstants.DISCOUNTS_LIST_KEY_WORD, discounts);
         } catch (Exception e){
             log.info("discounts list extraction was failed with :" + e.getMessage());
         }
@@ -39,6 +42,16 @@ public class DiscountsCommand implements Command {
             log.info("street list extraction was failed with :" + e.getMessage());
         }
 
+        int page;
+        try{
+            page = Integer.valueOf(
+                    req.getParameter(IServletConstants.PAGE_NUMBER_KEY_WORD));
+        } catch (NumberFormatException e){
+            page = 1;
+        }
+
+        pagenizer.pagenize(
+                req, IServletConstants.PAGE_ELEMENTS_COUNT, discounts, page);
         // TODO: 4/19/19 pagination through request parameters
         //              if null - redirect to first page
         //              if too big - redirect to the last possible page

@@ -1,7 +1,6 @@
 package com.training.controller.utill.impl;
 
 import com.training.controller.utill.interfaces.ICurrencyFormatter;
-import com.training.model.dao.impl.JDBCDiscountDao;
 import org.apache.log4j.Logger;
 
 import java.util.MissingResourceException;
@@ -23,9 +22,8 @@ public class CurrencyFormatter implements ICurrencyFormatter {
 
     @Override
     public String format(Optional<Long> number) {
-        long value = number.orElse((long) 0) * multiplier;
 
-        return String.valueOf(value / 100) + "." + String.format("%02d", value % 100);
+        return format(number.orElse((long) 0));
     }
 
     @Override

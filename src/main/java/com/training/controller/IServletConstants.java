@@ -2,6 +2,8 @@ package com.training.controller;
 
 
 public interface IServletConstants {
+    int PAGE_ELEMENTS_COUNT = 3;
+
     String[] CURRENCY_LIST = {"dollar", "hryvnia"};
     String[]  LANGUAGES_LIST = {"en", "ua"};
 
@@ -37,6 +39,9 @@ public interface IServletConstants {
     String CARS_LIST_KEY_WORD = "CARS_LIST";
     String STREETS_LIST_KEY_WORD = "STREETS_LIST";
     String CURRENCY_FORMATTER_KEY_WORD = "CURRENCY_FORMATTER";
+    String FIRST_ELEMENT_KEY_WORD = "FIRST_ELEMENT";
+    String LAST_ELEMENT_KEY_WORD = "LAST_ELEMENT";
+    String PAGE_NUMBER_KEY_WORD = "page";
 
     // paths shouldn't be changed unless there is some changes in jsp
     String HOME_PAGE_PATH = "/home";

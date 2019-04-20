@@ -16,13 +16,16 @@
         </div>
 
 
-<c:forEach var = "i" begin = "0" end = "${DISCOUNTS_LIST.size() - 1}">
+
+        <%-- todo: show only if end >= 0 --%>
+<c:forEach var = "i" begin = "${FIRST_ELEMENT}" end = "${LAST_ELEMENT}">
     <%-- todo: take begin and end for pagenation --%>
 
     <div class="row my_block">
         <div class="col-lg-3 text-left"></div>
         <div class="col-lg-6 text-left">
-        <%-- todo: print only if not null--%>
+            <input type="hidden" name="id" value="${DISCOUNTS_LIST.get(i).getId()}">
+
             <c:if test="${DISCOUNTS_LIST.get(i).getCarClass().isPresent()}">
                 <fmt:message key="car_Class"/>
                 <fmt:message key="${CARS_LIST.get(DISCOUNTS_LIST.get(i).getCarClass().get()).name}"/><br>
@@ -48,6 +51,7 @@
             <fmt:message key="discount"/>
                 ${CURRENCY_FORMATTER.format(DISCOUNTS_LIST.get(i).getDiscount())}
             <fmt:message key="${CURRENCY}_s"/><br>
+
 
         </div>
         <div class="col-lg-3 text-left"></div>
