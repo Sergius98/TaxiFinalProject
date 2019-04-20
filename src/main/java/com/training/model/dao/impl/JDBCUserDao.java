@@ -91,7 +91,7 @@ public class JDBCUserDao implements UserDao {
         try {
             connection.close();
         } catch (SQLException e) {
-            log.warn("there is a SQLException in JDBCUserDao:close");
+            log.warn("there is a SQLException in close");
             log.debug(e.getMessage(), e);
         }
     }

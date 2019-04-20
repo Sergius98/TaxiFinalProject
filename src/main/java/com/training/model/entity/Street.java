@@ -1,15 +1,24 @@
 package com.training.model.entity;
 
+import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
+
 public class Street {
     private int id;
-    private String name;
+    private Map<String, String> names = new ConcurrentHashMap<>();
     //coordinates
     private double x;
     private double y;
 
-    public Street(int id, String name, double x, double y) {
+    public Street(){
+
+    }
+
+    public Street(int id, String name_en, String name_ua, double x, double y) {
         this.id = id;
-        this.name = name;
+        names.put("en", name_en);
+        names.put("ua", name_en);
         this.x = x;
         this.y = y;
     }
@@ -38,11 +47,16 @@ public class Street {
         this.y = y;
     }
 
-    public String getName() {
-        return name;
+    public Optional<String> getName(String lang) {
+        return Optional.ofNullable(names.getOrDefault(lang, null));
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getNameString(String lang) {
+        return names.getOrDefault(lang,
+                names.getOrDefault("en", "noname"));
+    }
+
+    public void setName(String lang, String name) {
+        names.put(lang, name);
     }
 }

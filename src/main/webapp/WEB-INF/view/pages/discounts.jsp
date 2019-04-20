@@ -28,10 +28,12 @@
                 <fmt:message key="${CARS_LIST.get(DISCOUNTS_LIST.get(i).getCarClass().get()).name}"/><br>
             </c:if>
             <c:if test="${DISCOUNTS_LIST.get(i).getSourceStreetId().isPresent()}">
-                <fmt:message key="source_street"/>${DISCOUNTS_LIST.get(i).getSourceStreetId().get()}<br>
+                <fmt:message key="source_street"/>
+                ${STREETS_LIST.get(DISCOUNTS_LIST.get(i).getSourceStreetId().get()-1).getNameString(sessionScope.lang)}<br>
             </c:if>
             <c:if test="${DISCOUNTS_LIST.get(i).getDestinationStreetId().isPresent()}">
-                <fmt:message key="destination_street"/>${DISCOUNTS_LIST.get(i).getDestinationStreetId().get()}<br>
+                <fmt:message key="destination_street"/>
+                ${STREETS_LIST.get(DISCOUNTS_LIST.get(i).getDestinationStreetId().get()-1).getNameString(sessionScope.lang)}<br>
             </c:if>
             <c:if test="${DISCOUNTS_LIST.get(i).getMinimalBill().isPresent()}">
                 <fmt:message key="minimal_bill"/>${DISCOUNTS_LIST.get(i).getMinimalBill().get()}<br>

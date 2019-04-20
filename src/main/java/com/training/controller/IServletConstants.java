@@ -35,6 +35,7 @@ public interface IServletConstants {
     String ACTION_URI_ATTRIBUTE_KEY_WORD = "ACTION_URI";
     String DISCOUNTS_LIST_KEY_WORD = "DISCOUNTS_LIST";
     String CARS_LIST_KEY_WORD = "CARS_LIST";
+    String STREETS_LIST_KEY_WORD = "STREETS_LIST";
 
     // paths shouldn't be changed unless there is some changes in jsp
     String HOME_PAGE_PATH = "/home";

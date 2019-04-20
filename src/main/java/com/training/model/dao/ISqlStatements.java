@@ -20,7 +20,16 @@ public interface ISqlStatements {
     String READ_DISCOUNT = "select * from " + DB_NAME + ".`discounts`";
 
 
+    String READ_STREET_BY_ID = "select * from " + DB_NAME + ".`streets`" +
+            "where `streets`.`id` =(?)";
+    String READ_STREET = "select * from " + DB_NAME + ".`streets`";
 
-    //INSERT INTO `test`.`discounts`(`carClass`,`sourceStreetId`,`destinationStreetId`,`minimalBill`,`minimalThreshold`,`discount`) VALUES (0,0,0,0,0,500);
+    //INSERT INTO `test`.`discounts`(`carClass`,`sourceStreetId`,`destinationStreetId`,`minimalBill`,`minimalThreshold`,`discount`) VALUES (1,1,0,0,0,500);
     //INSERT INTO `test`.`discounts`(`carClass`,`sourceStreetId`,`destinationStreetId`,`minimalBill`,`minimalThreshold`,`discount`) VALUES (1,2,1,300,5,500);
+    //INSERT INTO `test`.`streets`(`name_en`,`name_ua`,`x`,`y`) VALUES ("First","Перша",1,5);
+    //INSERT INTO `test`.`streets`(`name_en`,`name_ua`,`x`,`y`) VALUES ("Second","Друга",5,15);
+    //INSERT INTO `test`.`streets`(`name_en`,`name_ua`,`x`,`y`) VALUES ("Third","Третя",2,10);
+    //INSERT INTO `test`.`streets`(`name_en`,`name_ua`,`x`,`y`) VALUES ("Fourth","Четверта",6,10);
+    //INSERT INTO `test`.`streets`(`name_en`,`name_ua`,`x`,`y`) VALUES ("Fifth","Пята",1,15);
+    //INSERT INTO `test`.`streets`(`name_en`,`name_ua`,`x`,`y`) VALUES ("Sixth","Шоста",6,5);
 }

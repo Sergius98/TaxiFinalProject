@@ -63,7 +63,7 @@ public class DiscountMapper {
                 discount = Optional.of(extractDiscount(resultSet));
             }
         } catch (SQLException e) {
-            log.warn("there is a SQLException in DiscountMapper:extractFromResultSet");
+            log.warn("there is a SQLException in extractFromResultSet");
             log.debug(e.getMessage(), e);
         }
         return discount;
@@ -77,7 +77,7 @@ public class DiscountMapper {
                 discountsList.add(extractDiscount(resultSet));
             }
         } catch (SQLException e) {
-            log.warn("there is a SQLException in DiscountMapper:extractAllFromResultSet");
+            log.warn("there is a SQLException in extractAllFromResultSet");
             log.debug(e.getMessage(), e);
         }
         return discountsList;

@@ -21,6 +21,8 @@ public class LanguageFilter implements Filter {
         Optional<String> language = Optional.ofNullable((String)req.getParameter(IServletConstants.LANG_ATTRIBUTE_KEY_WORD));
         if (language.isPresent()){
             ((HttpServletRequest)req).getSession().setAttribute(IServletConstants.LANG_ATTRIBUTE_KEY_WORD, req.getParameter(IServletConstants.LANG_ATTRIBUTE_KEY_WORD));
+        } else {
+            ((HttpServletRequest)req).getSession().setAttribute(IServletConstants.LANG_ATTRIBUTE_KEY_WORD, IServletConstants.LANGUAGES_LIST[0]);
         }
 
         req.setAttribute(IServletConstants.LANGUAGES_LIST_KEY_WORD,

@@ -30,27 +30,32 @@ public class JDBCDiscountDao implements DiscountDao {
 
     @Override
     public Optional<Discount> findById(int id) {
+        Optional<Discount> discount = Optional.empty();
+
         try( PreparedStatement statement = connection
                 .prepareStatement(ISqlStatements.READ_DISCOUNT_BY_ID) ){
             statement.setInt(1, id);
-            return mapper.extractFromResultSet(statement);
+            discount = mapper.extractFromResultSet(statement);
         } catch ( SQLException e ) {
-            log.warn("there is a SQLException in JDBCDiscountDao:findById");
+            log.warn("there is a SQLException in findById");
             log.debug(e.getMessage(), e);
-            return Optional.empty();
         }
+        return discount;
     }
 
     @Override
     public List<Discount> findAll() {
+        List<Discount> list;
+
         try( PreparedStatement statement = connection
                 .prepareStatement(ISqlStatements.READ_DISCOUNT) ){
-            return mapper.extractAllFromResultSet(statement);
+            list = mapper.extractAllFromResultSet(statement);
         } catch ( SQLException e ) {
-            log.warn("there is a SQLException in JDBCDiscountDao:findById");
+            log.warn("there is a SQLException in findAll");
             log.debug(e.getMessage(), e);
-            return new ArrayList<>();
+            list = new ArrayList<>();
         }
+        return list;
     }
 
     @Override
@@ -65,6 +70,12 @@ public class JDBCDiscountDao implements DiscountDao {
 
     @Override
     public void close() {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            log.warn("there is a SQLException in close");
+            log.debug(e.getMessage(), e);
+        }
 
     }
 }
