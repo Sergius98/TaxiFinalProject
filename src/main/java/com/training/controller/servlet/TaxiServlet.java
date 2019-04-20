@@ -6,6 +6,7 @@ import com.training.controller.command.Command;
 import com.training.controller.command.DiscountsCommand;
 import com.training.controller.command.WrongPathCommand;
 import com.training.controller.command.HomeCommand;
+import com.training.controller.command.admin.DeleteDiscountCommand;
 import com.training.controller.command.guest.LoginCommand;
 import com.training.controller.command.guest.SignUpCommand;
 import com.training.controller.command.user.LogoutCommand;
@@ -51,6 +52,7 @@ public class TaxiServlet extends HttpServlet {
         commands.put(IServletConstants.ADMIN_PREFIX + IServletConstants.HOME_PAGE_PATH, new HomeCommand());
         commands.put(IServletConstants.ADMIN_PREFIX + IServletConstants.LOGOUT_PAGE_PATH, new LogoutCommand());
         commands.put(IServletConstants.ADMIN_PREFIX + IServletConstants.DISCOUNTS_PAGE_PATH, new DiscountsCommand());
+        commands.put(IServletConstants.ADMIN_PREFIX + IServletConstants.DISCOUNTS_DELETE_PAGE_PATH, new DeleteDiscountCommand());
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

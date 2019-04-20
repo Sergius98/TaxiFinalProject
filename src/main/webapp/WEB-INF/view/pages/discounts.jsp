@@ -22,7 +22,6 @@
                 <div class="row my_block">
                     <div class="col-lg-3 text-left"></div>
                     <div class="col-lg-6 text-left">
-                        <input type="hidden" name="id" value="${DISCOUNTS_LIST.get(i).getId()}">
 
                         <c:if test="${DISCOUNTS_LIST.get(i).getCarClass().isPresent()}">
                             <fmt:message key="car_Class"/>
@@ -50,6 +49,15 @@
                             ${CURRENCY_FORMATTER.format(DISCOUNTS_LIST.get(i).getDiscount())}
                         <fmt:message key="${CURRENCY}_s"/><br>
 
+                        <c:if test="${ROLE == 2}">
+                            <form method="POST" action="${pageContext.request.contextPath}${PATH}/discounts/delete">
+                                <input type="hidden" name="id" value="${DISCOUNTS_LIST.get(i).getId()}">
+                                <button type="submit" class="btn btn-outline-dark" data-toggle="tooltip"
+                                        data-placement="top" title="<fmt:message key="delete_message"/>">
+                                    <fmt:message key="delete"/>
+                                </button>
+                            </form>
+                        </c:if>
 
                     </div>
                     <div class="col-lg-3 text-left"></div>

@@ -15,7 +15,7 @@ public interface IServletConstants {
     String ADMIN_PREFIX = "/admin";
 
     String[] ROLES_PREFIXES = {GUEST_PREFIX, USER_PREFIX, ADMIN_PREFIX};
-    int LOWEST_ACCESS_LEVEL = 0; // always zero since it is the lowest possible index
+    int LOWEST_ACCESS_LEVEL = 0;
 
     String ACCESS_FILTER_PATH = SERVLET_PATH;
     String LANGUAGE_FILTER_PATH = SERVLET_PATH;
@@ -42,13 +42,14 @@ public interface IServletConstants {
     String FIRST_ELEMENT_KEY_WORD = "FIRST_ELEMENT";
     String LAST_ELEMENT_KEY_WORD = "LAST_ELEMENT";
     String PAGE_NUMBER_KEY_WORD = "page";
+    String ID_PARAMETER_KEY_WORD = "id";
 
-    // paths shouldn't be changed unless there is some changes in jsp
     String HOME_PAGE_PATH = "/home";
     String LOGIN_PAGE_PATH = "/login";
     String SIGNUP_PAGE_PATH = "/signup";
     String LOGOUT_PAGE_PATH = "/logout";
     String DISCOUNTS_PAGE_PATH = "/discounts";
+    String DISCOUNTS_DELETE_PAGE_PATH = "/discounts/delete";
 
 
     String HOME_PAGE_JSP = "/WEB-INF/view/pages/home.jsp";

@@ -65,7 +65,14 @@ public class JDBCDiscountDao implements DiscountDao {
 
     @Override
     public void delete(int id) {
-
+        try( PreparedStatement statement = connection
+                .prepareStatement(ISqlStatements.DELETE_DISCOUNT) ){
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch ( SQLException e ) {
+            log.warn("there is a SQLException in delete");
+            log.debug(e.getMessage(), e);
+        }
     }
 
     @Override

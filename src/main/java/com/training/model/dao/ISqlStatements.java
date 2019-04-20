@@ -4,7 +4,7 @@ public interface ISqlStatements {
     String DB_NAME = "`test`";
 
     String INSERT_INTO_USER = "INSERT INTO " + DB_NAME + ".`users`" +
-            " (`nickname`, `password`, `role`, `spendMoney`) VALUES (?, ?, ?, 0)";
+            " (`nickname`, `password`, `role`, `spendMoney`) VALUES (?,?,?,0)";
 
     String READ_USER_BY_ID = "select * from " + DB_NAME + ".`users`" +
             "where `users`.`id` =(?)";
@@ -18,6 +18,8 @@ public interface ISqlStatements {
     String READ_DISCOUNT_BY_ID = "select * from " + DB_NAME + ".`discounts`" +
             "where `discounts`.`id` =(?)";
     String READ_DISCOUNT = "select * from " + DB_NAME + ".`discounts`";
+    String DELETE_DISCOUNT = "delete from " + DB_NAME +
+            ".`discounts` where `id`=(?)";
 
 
     String READ_STREET_BY_ID = "select * from " + DB_NAME + ".`streets`" +
