@@ -43,6 +43,7 @@ public interface IServletConstants {
     String LAST_ELEMENT_KEY_WORD = "LAST_ELEMENT";
     String PAGE_NUMBER_KEY_WORD = "page";
     String ID_PARAMETER_KEY_WORD = "id";
+    String LOYALTIES_LIST_KEY_WORD = "LOYALTIES_LIST";
 
     String HOME_PAGE_PATH = "/home";
     String LOGIN_PAGE_PATH = "/login";
@@ -51,10 +52,12 @@ public interface IServletConstants {
     String DISCOUNTS_PAGE_PATH = "/discounts";
     String DISCOUNTS_DELETE_PAGE_PATH = "/discounts/delete";
     String DISCOUNTS_ADD_PAGE_PATH = "/discounts/add";
+    String LOYALTIES_PAGE_PATH = "/loyalties";
 
 
     String HOME_PAGE_JSP = "/WEB-INF/view/pages/home.jsp";
     String LOGIN_PAGE_JSP = "/WEB-INF/view/pages/login.jsp";
     String SIGNUP_PAGE_JSP = "/WEB-INF/view/pages/signup.jsp";
     String DISCOUNTS_PAGE_JSP = "/WEB-INF/view/pages/discounts.jsp";
+    String LOYALTIES_PAGE_JSP = "/WEB-INF/view/pages/loyalties.jsp";
 }

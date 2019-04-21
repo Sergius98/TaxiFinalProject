@@ -2,10 +2,7 @@ package com.training.controller.servlet;
 
 
 import com.training.controller.IServletConstants;
-import com.training.controller.command.Command;
-import com.training.controller.command.DiscountsCommand;
-import com.training.controller.command.WrongPathCommand;
-import com.training.controller.command.HomeCommand;
+import com.training.controller.command.*;
 import com.training.controller.command.admin.AddDiscountCommand;
 import com.training.controller.command.admin.DeleteDiscountCommand;
 import com.training.controller.command.guest.LoginCommand;
@@ -43,6 +40,7 @@ public class TaxiServlet extends HttpServlet {
         commands.put(IServletConstants.GUEST_PREFIX + IServletConstants.LOGIN_PAGE_PATH, new LoginCommand());
         commands.put(IServletConstants.GUEST_PREFIX + IServletConstants.SIGNUP_PAGE_PATH, new SignUpCommand());
         commands.put(IServletConstants.GUEST_PREFIX + IServletConstants.DISCOUNTS_PAGE_PATH, new DiscountsCommand());
+        commands.put(IServletConstants.GUEST_PREFIX + IServletConstants.LOYALTIES_PAGE_PATH, new LoyaltiesCommand());
 
         // user (access level 1)
         commands.put(IServletConstants.USER_PREFIX + IServletConstants.HOME_PAGE_PATH, new HomeCommand());

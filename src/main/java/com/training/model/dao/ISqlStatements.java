@@ -26,6 +26,14 @@ public interface ISqlStatements {
             "where `streets`.`id` =(?)";
     String READ_STREET = "select * from " + DB_NAME + ".`streets`";
 
+    String INSERT_INTO_LOYALTY_THRESHOLD = "INSERT INTO " + DB_NAME + ".`loyaltyThresholds` " +
+            " (`threshold`, `discount`) VALUES" +
+            " (?, ?)";
+    //"INSERT INTO `test.`loyaltyThresholds` (`minimalThreshold`, `discount`) VALUES (500, 0,001);";
+    String READ_LOYALTY_THRESHOLD_BY_ID = "select * from " + DB_NAME + ".`loyaltyThresholds`" +
+            "where `loyaltyThresholds`.`id` =(?)";
+    String READ_LOYALTY_THRESHOLD = "select * from " + DB_NAME + ".`loyaltyThresholds`";
+
     //SELECT * FROM `test`.`discounts` WHERE (carClass = 0 or carClass is NULL) and minimalThreshold>=0;
     //INSERT INTO `test`.`discounts`(`carClass`,`sourceStreetId`,`destinationStreetId`,`minimalBill`,`minimalThreshold`,`discount`) VALUES (2,1,1,0,0,500);
     //INSERT INTO `test`.`discounts`(`carClass`,`sourceStreetId`,`destinationStreetId`,`minimalBill`,`minimalThreshold`,`discount`) VALUES (1,2,1,300,5,500);
@@ -35,4 +43,7 @@ public interface ISqlStatements {
     //INSERT INTO `test`.`streets`(`name_en`,`name_ua`,`x`,`y`) VALUES ("Fourth","Четверта",6,10);
     //INSERT INTO `test`.`streets`(`name_en`,`name_ua`,`x`,`y`) VALUES ("Fifth","Пята",1,15);
     //INSERT INTO `test`.`streets`(`name_en`,`name_ua`,`x`,`y`) VALUES ("Sixth","Шоста",6,5);
+
+    //INSERT INTO `test`.`loyaltyThresholds`(`threshold`,`discount`) VALUES (500, 0.01);
+
 }

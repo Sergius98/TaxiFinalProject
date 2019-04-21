@@ -2,20 +2,17 @@ package com.training.model.entity;
 
 public class LoyaltyThreshold {
     private int id;
-    private int threshold;
+    private long threshold;// TODO: 4/21/19 make long in db, make unique ind db 
     private double discount;
 
-    LoyaltyThreshold(int id, int threshold, double discount){
-        this.id = id;
-        this.threshold = threshold;
-        this.discount = discount;
+    public LoyaltyThreshold() {
     }
 
-    public int getThreshold() {
+    public long getThreshold() {
         return threshold;
     }
 
-    public void setThreshold(int threshold) {
+    public void setThreshold(long threshold) {
         this.threshold = threshold;
     }
 

@@ -43,6 +43,11 @@
                             <fmt:message key="discounts"/>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}${PATH}/loyalties?page=1">
+                            <fmt:message key="loyalties"/>
+                        </a>
+                    </li>
                     <!-- import user or admin or guest header -->
                     <c:choose>
                         <c:when test="${ROLE == 0}">
@@ -57,6 +62,8 @@
                         </c:when>
                     </c:choose>
                 </ul>
+
+
             </div>
             <!-- Brand/logo -->
             <div class="col-8 text-right">

@@ -21,3 +21,4 @@ public class HomeCommand implements Command {
         return IServletConstants.HOME_PAGE_JSP;
     }
 }
+

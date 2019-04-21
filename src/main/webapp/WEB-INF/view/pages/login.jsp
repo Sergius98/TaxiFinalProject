@@ -25,7 +25,7 @@
             <div class="col-lg-3 text-center">
               <input class="form-control" type="text"
                      data-toggle="tooltip" data-placement="top" title="<fmt:message key="input_nickname_message"/>"
-                     name="nickname" value="${NICKNAME}">
+                     name="nickname" value="${NICKNAME}" <%--required=""--%> >
             </div>
             <div class="col-lg-3 text-left">
             </div>

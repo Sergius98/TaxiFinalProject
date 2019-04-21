@@ -62,7 +62,6 @@
                             </c:if>
                         </div>
                     </div>
-                    <%-- todo: include admin parts (form to delete a node)--%>
                 </c:forEach>
             </c:when>
             <c:otherwise>

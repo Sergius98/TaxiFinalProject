@@ -32,4 +32,9 @@ public class CurrencyFormatter implements ICurrencyFormatter {
 
         return String.valueOf(value / 100) + "." + String.format("%02d", value % 100);
     }
+
+    @Override
+    public String formatDouble(double number) {
+        return String.format("%.2f", number);
+    }
 }
