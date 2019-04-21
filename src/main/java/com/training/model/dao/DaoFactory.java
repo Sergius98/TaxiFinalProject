@@ -12,6 +12,7 @@ public abstract class DaoFactory {
     public abstract StreetDao createStreetDao();
     public abstract TaxiDao createTaxiDao();
     public abstract UserDao createUserDao();
+    public abstract OrderDao createOrderDao();
 
     public static DaoFactory getInstance(){
         if( daoFactory == null ){
@@ -24,4 +25,5 @@ public abstract class DaoFactory {
         }
         return daoFactory;
     }
+
 }

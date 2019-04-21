@@ -40,23 +40,35 @@ public interface ISqlStatements {
             ".`loyaltyThresholds`";
     String DELETE_LOYALTY_THRESHOLD = "delete from " + DB_NAME +
             ".`loyaltyThresholds` where `id`=(?)";
-
-
-
-
-
-
-    /*
-
-SELECT src.id as srcId, src.X as srcX, src.Y as srcY, dst.id as dstId,
-dst.X as dstX, dst.Y as dstY, ABS(src.X-dst.X) as Xdst from test.streets as src,
-test.streets as dst where src.id=1 and dst.id=2;
-
-
-    */
-
-
-
+    String GET_ORDER = "\n" +
+            "SELECT src.X as srcX,\n" +
+            "       src.Y as srcY,\n" +
+            "       dst.X as dstX,\n" +
+            "       dst.Y as dstY,\n" +
+            "       car.price as taxiCarClassPrice,\n" +
+            "\n" +
+            "       (ABS(src.X-dst.X) + ABS(src.Y-dst.Y)) as distance,\n" +
+            "       (SELECT SUM(discount) as userThresholdsDiscount\n" +
+            "           from test.loyaltyThresholds as l\n" +
+            "           where u.spendMoney >= l.threshold\n" +
+            "       ) as userThresholdsDiscount,\n" +
+            "       ((ABS(src.X-dst.X) + ABS(src.Y-dst.Y)) * car.price) as bill,\n" +
+            "       (SELECT SUM(d.discount)\n" +
+            "        from test.discounts as d\n" +
+            "        WHERE (((src.id = d.sourceStreetId) or (d.sourceStreetId is Null)) and\n" +
+            "              ((dst.id = d.destinationStreetId) or (d.destinationStreetId is Null)) and\n" +
+            "              ((u.spendMoney >= d.minimalThreshold) or (d.minimalThreshold is Null)) and\n" +
+            "              ((bill >= d.minimalBill) or (d.minimalBill is Null)) and\n" +
+            "              ((car.id = d.carClass) or (d.carClass is Null)))\n" +
+            "       ) as orderDiscountsSum\n" +
+            "from test.users as u\n" +
+            "  join test.streets as src\n" +
+            "    join test.streets as dst\n" +
+            "      join test.car as car\n" +
+            "where src.id=(?) and\n" +
+            "      dst.id=(?) and\n" +
+            "      u.id=(?) and\n" +
+            "      car.id=(?);";
 
 
     //SELECT * FROM `test`.`discounts` WHERE (carClass = 0 or carClass is NULL) and minimalThreshold>=0;

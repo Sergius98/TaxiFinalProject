@@ -47,4 +47,9 @@ public class JDBCDaoFactory extends DaoFactory {
     public UserDao createUserDao() {
         return new JDBCUserDao(getConnection());
     }
+
+    @Override
+    public OrderDao createOrderDao() {
+        return new JDBCOrderDao(getConnection());
+    }
 }

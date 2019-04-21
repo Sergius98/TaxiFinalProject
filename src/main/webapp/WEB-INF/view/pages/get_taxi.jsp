@@ -78,16 +78,18 @@
                 <div class="col-lg-6 text-center">
 
                     <form method="POST" action="${pageContext.request.contextPath}${PATH}/get_taxi/comfirm">
-                        <input type="hidden" name="taxi_id" value="${TAXI_ID}">
-                        <input type="hidden" name="car_class_id" value="${CAR_CLASS.id}">
-                        <input type="hidden" name="source_street_id" value="${SOURCE_STREET.id}">
-                        <input type="hidden" name="destination_street_id" value="${DESTINATION_STREET.id}">
+                        <input type="hidden" name="car_class_id" value="${ORDER.taxiCarClassId}">
+                        <input type="hidden" name="source_street_id" value="${ORDER.sourceStreetId}">
+                        <input type="hidden" name="destination_street_id" value="${ORDER.destinationStreetId}">
 
-                        car_class: ${CAR_CLASS.getNameString(sessionScope.lang)}<br>
-                        source_street: ${SOURCE_STREET.getNameString(sessionScope.lang)}<br>
-                        destination street: ${DESTINATION_STREET.getNameString(sessionScope.lang)}<br>
-                        discount: ${DISCOUNT}<br>
-                        price: ${PRICE}<br>
+                        car_class: ${CARS_LIST.get(ORDER.taxiCarClassId-1).getNameString(sessionScope.lang)}<br>
+                        source_street: ${STREETS_LIST.get(ORDER.sourceStreetId-1).getNameString(sessionScope.lang)}<br>
+                        destination_street: ${STREETS_LIST.get(ORDER.destinationStreetId-1).getNameString(sessionScope.lang)}<br>
+                        userThresholdsDiscount: ${ORDER.userThresholdsDiscount}<br>
+                        orderDiscountsSum: ${ORDER.orderDiscountsSum}<br>
+                        price: ${ORDER.orderPrice}<br>
+                        OrderFinalPrice: ${ORDER.getOrderFinalPrice()}<br>
+                        OrderDiscount: ${ORDER.getOrderDiscount()}<br>
                             <%--<input class="form-control" type="text" placeholder="Readonly input here…" readonly>--%>
 
 

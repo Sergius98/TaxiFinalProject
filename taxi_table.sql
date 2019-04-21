@@ -82,3 +82,41 @@ INSERT INTO `test`.`streets`(`name_en`,`name_ua`,`x`,`y`) VALUES ("Sixth","Шо�
 INSERT INTO `test`.`taxies`(name,`carClass`,`streetId`) VALUES ("APOTO",1,1);
 INSERT INTO `test`.`taxies`(name,`carClass`,`streetId`) VALUES ("KOKO",2,5);
 INSERT INTO `test`.`taxies`(name,`carClass`,`streetId`) VALUES ("EIKIE",3,3);
+
+/*
+taxiStr.id as taxiStreetId,
+       taxiStr.X as taxiX,
+       taxiStr.Y as taxiY,
+       (ABS(taxiStr.X-src.X) + ABS(taxiStr.Y-src.Y)) as DelayDistance,
+       taxiStr.id=3 and
+
+ */
+
+SELECT src.X as srcX,
+       src.Y as srcY,
+       dst.X as dstX,
+       dst.Y as dstY,
+       car.price as taxiCarClassPrice,
+
+       (ABS(src.X-dst.X) + ABS(src.Y-dst.Y)) as distance,
+       (SELECT SUM(discount) as userThresholdsDiscount
+           from test.loyaltyThresholds as l
+           where u.spendMoney >= l.threshold
+       ) as userThresholdsDiscount,
+       ((ABS(src.X-dst.X) + ABS(src.Y-dst.Y)) * car.price) as bill,
+       (SELECT SUM(d.discount)
+        from test.discounts as d
+        WHERE (((src.id = d.sourceStreetId) or (d.sourceStreetId is Null)) and
+              ((dst.id = d.destinationStreetId) or (d.destinationStreetId is Null)) and
+              ((u.spendMoney >= d.minimalThreshold) or (d.minimalThreshold is Null)) and
+              ((bill >= d.minimalBill) or (d.minimalBill is Null)) and
+              ((car.id = d.carClass) or (d.carClass is Null)))
+       ) as orderDiscountsSum
+from test.users as u
+  join test.streets as src
+    join test.streets as dst
+      join test.car as car
+where src.id=1 and
+      dst.id=2 and
+      u.id=25 and
+      car.id=1;
