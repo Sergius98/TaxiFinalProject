@@ -26,24 +26,43 @@ public interface ISqlStatements {
             "where `streets`.`id` =(?)";
     String READ_STREET = "select * from " + DB_NAME + ".`streets`";
 
-    String INSERT_INTO_LOYALTY_THRESHOLD = "INSERT INTO " + DB_NAME + ".`loyaltyThresholds` " +
-            " (`threshold`, `discount`) VALUES" +
-            " (?, ?)";
-    //"INSERT INTO `test.`loyaltyThresholds` (`minimalThreshold`, `discount`) VALUES (500, 0,001);";
-    String READ_LOYALTY_THRESHOLD_BY_ID = "select * from " + DB_NAME + ".`loyaltyThresholds`" +
+    String READ_CAR_BY_ID = "select * from " + DB_NAME + ".`car`" +
+            "where `car`.`id` =(?)";
+    String READ_CAR = "select * from " + DB_NAME + ".`car`";
+
+    String INSERT_INTO_LOYALTY_THRESHOLD = "INSERT INTO " + DB_NAME +
+            ".`loyaltyThresholds`(`threshold`, `discount`) VALUES (?, ?)";
+    String READ_LOYALTY_THRESHOLD_BY_ID = "select * from " + DB_NAME +
+            ".`loyaltyThresholds`" +
             "where `loyaltyThresholds`.`id` =(?)";
-    String READ_LOYALTY_THRESHOLD = "select * from " + DB_NAME + ".`loyaltyThresholds`";
+    // TODO: 4/21/19 sort results
+    String READ_LOYALTY_THRESHOLD = "select * from " + DB_NAME +
+            ".`loyaltyThresholds`";
+    String DELETE_LOYALTY_THRESHOLD = "delete from " + DB_NAME +
+            ".`loyaltyThresholds` where `id`=(?)";
+
+
+
+
+
+
+    /*
+
+SELECT src.id as srcId, src.X as srcX, src.Y as srcY, dst.id as dstId,
+dst.X as dstX, dst.Y as dstY, ABS(src.X-dst.X) as Xdst from test.streets as src,
+test.streets as dst where src.id=1 and dst.id=2;
+
+
+    */
+
+
+
+
 
     //SELECT * FROM `test`.`discounts` WHERE (carClass = 0 or carClass is NULL) and minimalThreshold>=0;
-    //INSERT INTO `test`.`discounts`(`carClass`,`sourceStreetId`,`destinationStreetId`,`minimalBill`,`minimalThreshold`,`discount`) VALUES (2,1,1,0,0,500);
-    //INSERT INTO `test`.`discounts`(`carClass`,`sourceStreetId`,`destinationStreetId`,`minimalBill`,`minimalThreshold`,`discount`) VALUES (1,2,1,300,5,500);
-    //INSERT INTO `test`.`streets`(`name_en`,`name_ua`,`x`,`y`) VALUES ("First","Перша",1,5);
-    //INSERT INTO `test`.`streets`(`name_en`,`name_ua`,`x`,`y`) VALUES ("Second","Друга",5,15);
-    //INSERT INTO `test`.`streets`(`name_en`,`name_ua`,`x`,`y`) VALUES ("Third","Третя",2,10);
-    //INSERT INTO `test`.`streets`(`name_en`,`name_ua`,`x`,`y`) VALUES ("Fourth","Четверта",6,10);
-    //INSERT INTO `test`.`streets`(`name_en`,`name_ua`,`x`,`y`) VALUES ("Fifth","Пята",1,15);
-    //INSERT INTO `test`.`streets`(`name_en`,`name_ua`,`x`,`y`) VALUES ("Sixth","Шоста",6,5);
+
+
+
 
     //INSERT INTO `test`.`loyaltyThresholds`(`threshold`,`discount`) VALUES (500, 0.01);
-
 }

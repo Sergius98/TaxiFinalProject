@@ -4,7 +4,10 @@ package com.training.controller.servlet;
 import com.training.controller.IServletConstants;
 import com.training.controller.command.*;
 import com.training.controller.command.admin.AddDiscountCommand;
+import com.training.controller.command.admin.AddLoyaltyThresholdCommand;
 import com.training.controller.command.admin.DeleteDiscountCommand;
+import com.training.controller.command.admin.DeleteLoyaltyThresholdCommand;
+import com.training.controller.command.guest.GetTaxiCommand;
 import com.training.controller.command.guest.LoginCommand;
 import com.training.controller.command.guest.SignUpCommand;
 import com.training.controller.command.user.LogoutCommand;
@@ -46,6 +49,8 @@ public class TaxiServlet extends HttpServlet {
         commands.put(IServletConstants.USER_PREFIX + IServletConstants.HOME_PAGE_PATH, new HomeCommand());
         commands.put(IServletConstants.USER_PREFIX + IServletConstants.LOGOUT_PAGE_PATH, new LogoutCommand());
         commands.put(IServletConstants.USER_PREFIX + IServletConstants.DISCOUNTS_PAGE_PATH, new DiscountsCommand());
+        commands.put(IServletConstants.USER_PREFIX + IServletConstants.LOYALTIES_PAGE_PATH, new LoyaltiesCommand());
+        commands.put(IServletConstants.USER_PREFIX + IServletConstants.GET_TAXI_PAGE_PATH, new GetTaxiCommand());
 
         // admin (access level 2)
         commands.put(IServletConstants.ADMIN_PREFIX + IServletConstants.HOME_PAGE_PATH, new HomeCommand());
@@ -53,6 +58,10 @@ public class TaxiServlet extends HttpServlet {
         commands.put(IServletConstants.ADMIN_PREFIX + IServletConstants.DISCOUNTS_PAGE_PATH, new DiscountsCommand());
         commands.put(IServletConstants.ADMIN_PREFIX + IServletConstants.DISCOUNTS_DELETE_PAGE_PATH, new DeleteDiscountCommand());
         commands.put(IServletConstants.ADMIN_PREFIX + IServletConstants.DISCOUNTS_ADD_PAGE_PATH, new AddDiscountCommand());
+        commands.put(IServletConstants.ADMIN_PREFIX + IServletConstants.LOYALTIES_PAGE_PATH, new LoyaltiesCommand());
+        commands.put(IServletConstants.ADMIN_PREFIX + IServletConstants.DELETE_LOYALTY_THRESHOLD_PAGE_PATH, new DeleteLoyaltyThresholdCommand());
+        commands.put(IServletConstants.ADMIN_PREFIX + IServletConstants.ADD_LOYALTY_THRESHOLD_PAGE_PATH, new AddLoyaltyThresholdCommand());
+        commands.put(IServletConstants.ADMIN_PREFIX + IServletConstants.GET_TAXI_PAGE_PATH, new GetTaxiCommand());
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

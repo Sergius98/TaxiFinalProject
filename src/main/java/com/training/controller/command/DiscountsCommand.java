@@ -36,6 +36,7 @@ public class DiscountsCommand implements Command {
             req.setAttribute(IServletConstants.CARS_LIST_KEY_WORD, dao.findAll());
         } catch (Exception e){
             log.info("cars list extraction was failed with :" + e.getMessage());
+            log.debug(e, e);
         }
         try(StreetDao dao = DaoFactory.getInstance().createStreetDao()){
             req.setAttribute(IServletConstants.STREETS_LIST_KEY_WORD, dao.findAll());
@@ -43,6 +44,7 @@ public class DiscountsCommand implements Command {
             log.info("street list extraction was failed with :" + e.getMessage());
         }
 
+        // TODO: 4/21/19 util
         Optional<Integer> page = Optional.ofNullable(
                 (Integer)((HttpServletRequest) req).getSession()
                         .getAttribute(IServletConstants.PAGE_NUMBER_KEY_WORD));

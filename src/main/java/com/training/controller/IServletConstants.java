@@ -53,6 +53,9 @@ public interface IServletConstants {
     String DISCOUNTS_DELETE_PAGE_PATH = "/discounts/delete";
     String DISCOUNTS_ADD_PAGE_PATH = "/discounts/add";
     String LOYALTIES_PAGE_PATH = "/loyalties";
+    String DELETE_LOYALTY_THRESHOLD_PAGE_PATH = "/loyalties/delete";
+    String ADD_LOYALTY_THRESHOLD_PAGE_PATH = "/loyalties/add";
+    String GET_TAXI_PAGE_PATH = "/get_taxi";
 
 
     String HOME_PAGE_JSP = "/WEB-INF/view/pages/home.jsp";
@@ -60,4 +63,5 @@ public interface IServletConstants {
     String SIGNUP_PAGE_JSP = "/WEB-INF/view/pages/signup.jsp";
     String DISCOUNTS_PAGE_JSP = "/WEB-INF/view/pages/discounts.jsp";
     String LOYALTIES_PAGE_JSP = "/WEB-INF/view/pages/loyalties.jsp";
+    String GET_TAXI_PAGE_JSP = "/WEB-INF/view/pages/get_taxi.jsp";
 }

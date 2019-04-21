@@ -21,7 +21,7 @@ public class StreetMapper {
         street.setName("en", set.getString("name_en"));
         street.setName("ua", set.getString("name_ua"));
         street.setX(set.getInt("x"));
-        street.setX(set.getInt("y"));
+        street.setY(set.getInt("y"));
         return street;
     }
 

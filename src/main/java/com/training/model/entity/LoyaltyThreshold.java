@@ -8,6 +8,11 @@ public class LoyaltyThreshold {
     public LoyaltyThreshold() {
     }
 
+    public LoyaltyThreshold(Long threshold, Double discount) {
+        this.threshold = threshold;
+        this.discount = discount;
+    }
+
     public long getThreshold() {
         return threshold;
     }

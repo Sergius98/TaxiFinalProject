@@ -25,7 +25,7 @@
 
                             <c:if test="${DISCOUNTS_LIST.get(i).getCarClass().isPresent()}">
                                 <fmt:message key="car_Class"/>
-                                <fmt:message key="${CARS_LIST.get(DISCOUNTS_LIST.get(i).getCarClass().get()).name}"/><br>
+                                ${CARS_LIST.get(DISCOUNTS_LIST.get(i).getCarClass().get() - 1).getNameString(sessionScope.lang)}<br>
                             </c:if>
                             <c:if test="${DISCOUNTS_LIST.get(i).getSourceStreetId().isPresent()}">
                                 <fmt:message key="source_street"/>
@@ -89,7 +89,7 @@
                                 <select class="form-control" id="car_class" name="car_class">
                                     <option value="empty"></option>
                                     <c:forEach items="${CARS_LIST}" var="item">
-                                        <option value="${item.id}">${item.name}</option>
+                                        <option value="${item.id}">${item.getNameString(sessionScope.lang)}</option>
                                     </c:forEach>
                                 </select>
                             </div>

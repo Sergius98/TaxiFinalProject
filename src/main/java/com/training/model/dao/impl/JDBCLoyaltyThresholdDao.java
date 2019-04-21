@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -27,7 +28,25 @@ public class JDBCLoyaltyThresholdDao implements LoyaltyThresholdDao {
     @Override
     public boolean create(LoyaltyThreshold entity) {
 
-        return false;
+
+        boolean isSuccessful = false;
+
+        try (PreparedStatement prepStatement = connection.prepareStatement(
+                ISqlStatements.INSERT_INTO_LOYALTY_THRESHOLD)) {
+            // TODO: 4/21/19 replace int with long
+            prepStatement.setInt(1, (int) entity.getThreshold());
+            prepStatement.setDouble(2, entity.getDiscount());
+
+            prepStatement.executeUpdate();
+            isSuccessful = true;
+        } catch (SQLIntegrityConstraintViolationException e) {
+            log.error("there is a problem in create");
+            log.debug(e.getMessage(), e);
+        } catch (SQLException e) {
+            log.warn("there is a SQLException in create");
+            log.debug(e.getMessage(), e);
+        }
+        return isSuccessful;
     }
 
     @Override
@@ -52,16 +71,28 @@ public class JDBCLoyaltyThresholdDao implements LoyaltyThresholdDao {
 
     @Override
     public void update(LoyaltyThreshold entity) {
-
+        // TODO: 4/21/19 exceptions for empty methods 
     }
 
     @Override
     public void delete(int id) {
-
+        try( PreparedStatement statement = connection
+                .prepareStatement(ISqlStatements.DELETE_LOYALTY_THRESHOLD) ){
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch ( SQLException e ) {
+            log.warn("there is a SQLException in delete");
+            log.debug(e.getMessage(), e);
+        }
     }
 
     @Override
     public void close() {
-
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            log.warn("there is a SQLException in close");
+            log.debug(e.getMessage(), e);
+        }
     }
 }

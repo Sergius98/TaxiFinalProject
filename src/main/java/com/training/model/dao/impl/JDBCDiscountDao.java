@@ -57,7 +57,6 @@ public class JDBCDiscountDao implements DiscountDao {
             setLongOrNull(prepStatement, 5, entity.getMinimalThreshold());
             prepStatement.setLong(6, entity.getDiscount());
 
-            log.error("there is a problem in create before this message");
             prepStatement.executeUpdate();
             isSuccessful = true;
         } catch (SQLIntegrityConstraintViolationException e) {

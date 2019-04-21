@@ -20,7 +20,7 @@ public class JDBCDaoFactory extends DaoFactory {
 
     @Override
     public CarDao createCarDao() {
-        return new JDBCDummyCarDao(null);
+        return new JDBCCarDao(getConnection());
     }
 
     @Override

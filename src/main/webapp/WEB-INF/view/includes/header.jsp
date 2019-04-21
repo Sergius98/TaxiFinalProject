@@ -31,7 +31,7 @@
     <div class="my_top">
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <!-- Links -->
-            <div class="col-4">
+            <div class="col-10">
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="${pageContext.request.contextPath}${PATH}/home">
@@ -66,7 +66,7 @@
 
             </div>
             <!-- Brand/logo -->
-            <div class="col-8 text-right">
+            <div class="col-2 text-right">
                 <a class="navbar-brand my_logo" href="#">
                     <fmt:message key="taxi_name"/>
                 </a>

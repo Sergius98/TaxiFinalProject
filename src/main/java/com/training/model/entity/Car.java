@@ -1,15 +1,13 @@
 package com.training.model.entity;
 
+import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
+
 public class Car {
     private int id; // car class
-    private String name;
+    private Map<String, String> names = new ConcurrentHashMap<>();
     private long price; // price per 1 standard units, in cents
-
-    public Car(int id, String name, long price) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-    }
 
     //getters and setters
     public int getId() {
@@ -20,12 +18,18 @@ public class Car {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+
+    public Optional<String> getName(String lang) {
+        return Optional.ofNullable(names.getOrDefault(lang, null));
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getNameString(String lang) {
+        return names.getOrDefault(lang,
+                names.getOrDefault("en", "noname"));
+    }
+
+    public void setName(String lang, String name) {
+        names.put(lang, name);
     }
 
     public long getPrice() {
