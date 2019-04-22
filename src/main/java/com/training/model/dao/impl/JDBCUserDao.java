@@ -76,13 +76,10 @@ public class JDBCUserDao implements UserDao {
 
     @Override
     public void update(User entity) {
-        // TODO: 4/17/19 if there will be time add update for user information
-
     }
 
     @Override
     public void delete(int id) {
-        // TODO: 4/17/19 if there will be time add delete for user
 
     }
 

@@ -14,7 +14,7 @@ import java.util.Optional;
 public class OrderMapper {
     private static final Logger log = Logger.getLogger(OrderMapper.class);
 
-    public Order extractOrder(ResultSet set) throws SQLException {
+    private Order extractOrder(ResultSet set) throws SQLException {
         Order order = new Order();
         order.setUserThresholdsDiscount(set.getDouble("userThresholdsDiscount"));
         order.setOrderDiscountsSum(set.getLong("orderDiscountsSum"));

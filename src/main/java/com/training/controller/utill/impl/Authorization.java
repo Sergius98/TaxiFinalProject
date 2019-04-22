@@ -64,7 +64,7 @@ public class Authorization implements IAuthorization {
             try(UserDao dao = DaoFactory.getInstance().createUserDao()){
                 if (dao.create(user.get())){
                     log.info("user was registered");
-                    logIn(req);//userDataManager.setUser(req, user);
+                    logIn(req);
                     path = Optional.of(IServletConstants.REDIRECT_KEY_WORD +
                             IServletConstants.HOME_PAGE_PATH);
                 } else {

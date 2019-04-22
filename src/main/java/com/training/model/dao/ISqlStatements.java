@@ -79,6 +79,8 @@ public interface ISqlStatements {
             "ORDER BY delay ASC";
     String UPDATE_TAXI_LOCATION = "update " + DB_NAME + ".taxies as t " +
             "set t.streetId = (?) where t.id = (?)";
+    String UPDATE_USER_SPENDINGS = "UPDATE" + DB_NAME + ".users " +
+            "set users.spendMoney=(users.spendMoney+?) where users.id=?";
 
 
     //SELECT * FROM `test`.`discounts` WHERE (carClass = 0 or carClass is NULL) and minimalThreshold>=0;

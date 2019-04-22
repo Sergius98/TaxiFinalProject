@@ -30,36 +30,5 @@ public class GetTaxiCommand implements Command {
 
         return IServletConstants.GET_TAXI_PAGE_JSP;
     }
-/*
-    private Localization localization = new Localization();
-    private OrderExtractor extractor = new OrderExtractor();
-    @Override
-    public String execute(HttpServletRequest req) {
-        String path;
-        Locale locale = localization.extractLocale(req);
-        Optional<Order> discount = extractor.extract(req);
 
-        try(OrderDao dao = DaoFactory.getInstance().createDiscountDao()){
-            if (dao.create(discount.get())){
-                log.info("discount was registered");
-            } else {
-                throw new Exception("Insert was unsuccessful");
-            }
-            path = IServletConstants.REDIRECT_KEY_WORD +
-                    IServletConstants.DISCOUNTS_PAGE_PATH + "?" +
-                    IServletConstants.PAGE_NUMBER_KEY_WORD + "="
-                    + Integer.MAX_VALUE;
-        } catch (Exception e){
-            log.info("registration was failed with :" + e.getMessage());
-            req.setAttribute(IServletConstants.ALERT_ATTRIBUTE_KEY_WORD,
-                    ResourceBundle.getBundle("errors", locale)
-                            .getString("invalid_discount"));
-            path = IServletConstants.ROOT_PATH +
-                    IServletConstants.ADMIN_PREFIX +
-                    IServletConstants.DISCOUNTS_PAGE_PATH;
-        }
-
-        return path;
-    }
-*/
 }

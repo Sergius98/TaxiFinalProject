@@ -8,7 +8,8 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public interface TaxiDao extends GenericDao<Taxi> {
-    Optional<Integer> findTimeForClosestTaxiWithCarClass(int carClass, int destinationStreetId, int sourceStreetId);
+    Optional<Integer> confirmOrderForClosestTaxiWithCarClass(int userId,
+            int carClass, int destinationStreetId, int sourceStreetId, int bill);
     void startTransaction() throws SQLException;
     void commit() throws SQLException;
 }

@@ -12,9 +12,6 @@
             <span>
                 <fmt:message key="hello"/>${USER.nickname}<br>
                 <fmt:message key="you_spent"/>${USER.spendMoney} <fmt:message key="${CURRENCY}_s"/><br>
-                <fmt:message key="next_threshold"/>${NEXT_THRESHOLD}  0 <fmt:message key="${CURRENCY}_s"/><br>
-                <fmt:message key="current_discount"/>${CURRENT_DISCOUNT}  0%<br>
-                <fmt:message key="next_discount"/>${NEXT_DISCOUNT}  0%<br>
             </span>
     </div>
     <div class="col-lg-2"></div>

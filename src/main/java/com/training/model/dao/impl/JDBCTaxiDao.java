@@ -2,6 +2,7 @@ package com.training.model.dao.impl;
 
 import com.training.model.dao.ISqlStatements;
 import com.training.model.dao.interfaces.TaxiDao;
+import com.training.model.dao.interfaces.UserDao;
 import com.training.model.dao.mappers.StreetMapper;
 import com.training.model.entity.Order;
 import com.training.model.entity.Street;
@@ -55,14 +56,18 @@ public class JDBCTaxiDao implements TaxiDao {
     }
 
     @Override
-    public Optional<Integer> findTimeForClosestTaxiWithCarClass(int carClass, int destinationStreetId, int sourceStreetId) {
+    public Optional<Integer> confirmOrderForClosestTaxiWithCarClass(
+            int userId, int carClass, int destinationStreetId,
+            int sourceStreetId, int bill) {
         Optional<Integer> delay = Optional.empty();
         ResultSet resultSet;
         int taxiId;
         try( PreparedStatement selectStatement = connection.prepareStatement(
                 ISqlStatements.FINT_TAXY_ID_AND_DELAY_BY_CAR_CLASS_AND_SRC_STREET);
-             PreparedStatement updateTaxiStatement = connection.prepareStatement(
-                     ISqlStatements.UPDATE_TAXI_LOCATION) ){
+             PreparedStatement updateTaxiStatement = connection
+                     .prepareStatement(ISqlStatements.UPDATE_TAXI_LOCATION);
+             PreparedStatement updateUserStatement = connection.prepareStatement(
+                     ISqlStatements.UPDATE_USER_SPENDINGS)){
             selectStatement.setInt(1, sourceStreetId);
             selectStatement.setInt(2, carClass);
             resultSet = selectStatement.executeQuery();
@@ -70,7 +75,11 @@ public class JDBCTaxiDao implements TaxiDao {
             taxiId = resultSet.getInt("taxiId");
             delay = Optional.of(resultSet.getInt("delay"));
             resultSet.close();
-//todo update user's spent money
+
+            updateUserStatement.setInt(1, bill);
+            updateUserStatement.setInt(2, userId);
+            updateUserStatement.executeUpdate();
+
             updateTaxiStatement.setInt(1, destinationStreetId);
             updateTaxiStatement.setInt(2, taxiId);
             updateTaxiStatement.executeUpdate();
@@ -80,7 +89,7 @@ public class JDBCTaxiDao implements TaxiDao {
             } catch (SQLException e1) {
                 log.warn("can't rollback");
             }
-            log.warn("there is a SQLException in findTimeForClosestTaxiWithCarClass");
+            log.warn("there is a SQLException in confirmOrderForClosestTaxiWithCarClass");
             log.debug(e.getMessage(), e);
         }
         return delay;

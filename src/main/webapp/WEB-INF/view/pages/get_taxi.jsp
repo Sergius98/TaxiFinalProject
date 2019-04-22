@@ -81,12 +81,13 @@
                         <input type="hidden" name="car_class" value="${ORDER.taxiCarClassId}">
                         <input type="hidden" name="source_street" value="${ORDER.sourceStreetId}">
                         <input type="hidden" name="destination_street" value="${ORDER.destinationStreetId}">
+                        <input type="hidden" name="final_price" value="${ORDER.getOrderFinalPrice()}">
 
 
                         <fmt:message key="car_class"/> ${CARS_LIST.get(ORDER.taxiCarClassId-1).getNameString(sessionScope.lang)}<br>
                         <fmt:message key="source_street"/> ${STREETS_LIST.get(ORDER.sourceStreetId-1).getNameString(sessionScope.lang)}<br>
                         <fmt:message key="destination_street"/> ${STREETS_LIST.get(ORDER.destinationStreetId-1).getNameString(sessionScope.lang)}<br>
-                        <fmt:message key="userThresholdsDiscount"/> ${ORDER.userThresholdsDiscount}<br>
+                        <fmt:message key="userThresholdsDiscount"/> ${ORDER.userThresholdsDiscount}%<br>
                         <fmt:message key="orderDiscountsSum"/> ${ORDER.orderDiscountsSum}<br>
                         <fmt:message key="raw_price"/> ${ORDER.orderPrice}<br>
                         <fmt:message key="OrderDiscount"/> ${ORDER.getOrderDiscount()}<br>
