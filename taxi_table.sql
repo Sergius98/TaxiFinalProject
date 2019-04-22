@@ -82,6 +82,7 @@ INSERT INTO `test`.`streets`(`name_en`,`name_ua`,`x`,`y`) VALUES ("Sixth","Шо�
 INSERT INTO `test`.`taxies`(name,`carClass`,`streetId`) VALUES ("APOTO",1,1);
 INSERT INTO `test`.`taxies`(name,`carClass`,`streetId`) VALUES ("KOKO",2,5);
 INSERT INTO `test`.`taxies`(name,`carClass`,`streetId`) VALUES ("EIKIE",3,3);
+INSERT INTO `test`.`taxies`(name,`carClass`,`streetId`) VALUES ("HOPOCO",1,1);
 
 /*
 taxiStr.id as taxiStreetId,
@@ -91,6 +92,17 @@ taxiStr.id as taxiStreetId,
        taxiStr.id=3 and
 
  */
+SELECT t.id as taxiId,
+       (ABS(l.x - s.x)+ABS(l.y - s.y)) as delay
+from test.taxies as t
+  left join test.streets as s on s.id = 2
+  left join test.streets as l on l.id = t.streetId
+where t.carClass = 1
+ORDER BY delay ASC;
+
+update test.taxies as t
+set t.streetId = 2
+where t.id = 1;
 
 SELECT src.X as srcX,
        src.Y as srcY,

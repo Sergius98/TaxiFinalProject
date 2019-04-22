@@ -46,6 +46,8 @@ public interface IServletConstants {
     String LOYALTIES_LIST_KEY_WORD = "LOYALTIES_LIST";
     String SUCCESSFUL_SEARCH_KEY_WORD = "SUCCESSFUL_SEARCH";
     String ORDER_KEY_WORD = "ORDER";
+    String SUCCESSFUL_CONFIRMATION_KEY_WORD = "SUCCESSFUL_CONFIRMATION";
+    String DELAY_KEY_WORD = "DELAY";
 
     String HOME_PAGE_PATH = "/home";
     String LOGIN_PAGE_PATH = "/login";
@@ -59,6 +61,7 @@ public interface IServletConstants {
     String ADD_LOYALTY_THRESHOLD_PAGE_PATH = "/loyalties/add";
     String GET_TAXI_PAGE_PATH = "/get_taxi";
     String SEARCH_TAXI_PAGE_PATH = "/get_taxi/search";
+    String CONFIRM_TAXI_PAGE_PATH = "/get_taxi/confirm";
 
 
     String HOME_PAGE_JSP = "/WEB-INF/view/pages/home.jsp";

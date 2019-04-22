@@ -1,4 +1,4 @@
-package com.training.controller.command.guest;
+package com.training.controller.command.user;
 
 import com.training.controller.IServletConstants;
 import com.training.controller.command.Command;

@@ -35,40 +35,49 @@ public interface ISqlStatements {
     String READ_LOYALTY_THRESHOLD_BY_ID = "select * from " + DB_NAME +
             ".`loyaltyThresholds`" +
             "where `loyaltyThresholds`.`id` =(?)";
-    // TODO: 4/21/19 sort results
+
     String READ_LOYALTY_THRESHOLD = "select * from " + DB_NAME +
-            ".`loyaltyThresholds`";
+            ".`loyaltyThresholds` ORDER BY threshold ASC";
     String DELETE_LOYALTY_THRESHOLD = "delete from " + DB_NAME +
             ".`loyaltyThresholds` where `id`=(?)";
-    String GET_ORDER = "\n" +
-            "SELECT src.X as srcX,\n" +
-            "       src.Y as srcY,\n" +
-            "       dst.X as dstX,\n" +
-            "       dst.Y as dstY,\n" +
-            "       car.price as taxiCarClassPrice,\n" +
-            "\n" +
-            "       (ABS(src.X-dst.X) + ABS(src.Y-dst.Y)) as distance,\n" +
-            "       (SELECT SUM(discount) as userThresholdsDiscount\n" +
-            "           from test.loyaltyThresholds as l\n" +
-            "           where u.spendMoney >= l.threshold\n" +
-            "       ) as userThresholdsDiscount,\n" +
-            "       ((ABS(src.X-dst.X) + ABS(src.Y-dst.Y)) * car.price) as bill,\n" +
-            "       (SELECT SUM(d.discount)\n" +
-            "        from test.discounts as d\n" +
-            "        WHERE (((src.id = d.sourceStreetId) or (d.sourceStreetId is Null)) and\n" +
-            "              ((dst.id = d.destinationStreetId) or (d.destinationStreetId is Null)) and\n" +
-            "              ((u.spendMoney >= d.minimalThreshold) or (d.minimalThreshold is Null)) and\n" +
-            "              ((bill >= d.minimalBill) or (d.minimalBill is Null)) and\n" +
-            "              ((car.id = d.carClass) or (d.carClass is Null)))\n" +
-            "       ) as orderDiscountsSum\n" +
-            "from test.users as u\n" +
-            "  join test.streets as src\n" +
-            "    join test.streets as dst\n" +
-            "      join test.car as car\n" +
-            "where src.id=(?) and\n" +
-            "      dst.id=(?) and\n" +
-            "      u.id=(?) and\n" +
-            "      car.id=(?);";
+
+    String GET_ORDER = "SELECT src.X as srcX, " +
+            "       src.Y as srcY, " +
+            "       dst.X as dstX, " +
+            "       dst.Y as dstY, " +
+            "       car.price as taxiCarClassPrice," +
+            "       (ABS(src.X-dst.X) + ABS(src.Y-dst.Y)) as distance, " +
+            "       (SELECT SUM(discount) as userThresholdsDiscount " +
+            "           from " + DB_NAME +".loyaltyThresholds as l " +
+            "           where u.spendMoney >= l.threshold " +
+            "       ) as userThresholdsDiscount, " +
+            "       ((ABS(src.X-dst.X) + ABS(src.Y-dst.Y)) * car.price) as bill, " +
+            "       (SELECT SUM(d.discount) " +
+            "        from " + DB_NAME +".discounts as d " +
+            "        WHERE (((src.id = d.sourceStreetId) or (d.sourceStreetId is Null)) and " +
+            "              ((dst.id = d.destinationStreetId) or (d.destinationStreetId is Null)) and " +
+            "              ((u.spendMoney >= d.minimalThreshold) or (d.minimalThreshold is Null)) and " +
+            "              ((bill >= d.minimalBill) or (d.minimalBill is Null)) and " +
+            "              ((car.id = d.carClass) or (d.carClass is Null))) " +
+            "       ) as orderDiscountsSum " +
+            "from " + DB_NAME + ".users as u " +
+            "  join " + DB_NAME + ".streets as src " +
+            "    join " + DB_NAME + ".streets as dst " +
+            "      join " + DB_NAME + ".car as car " +
+            "where src.id=(?) and " +
+            "      dst.id=(?) and " +
+            "      u.id=(?) and " +
+            "      car.id=(?)";
+
+    String FINT_TAXY_ID_AND_DELAY_BY_CAR_CLASS_AND_SRC_STREET = "SELECT t.id as taxiId, " +
+            "   (ABS(l.x - s.x)+ABS(l.y - s.y)) as delay " +
+            "from " + DB_NAME + ".taxies as t " +
+            "   left join " + DB_NAME + ".streets as s on s.id = (?) " +
+            "       left join " + DB_NAME + ".streets as l on l.id = t.streetId " +
+            "where t.carClass = (?) " +
+            "ORDER BY delay ASC";
+    String UPDATE_TAXI_LOCATION = "update " + DB_NAME + ".taxies as t " +
+            "set t.streetId = (?) where t.id = (?)";
 
 
     //SELECT * FROM `test`.`discounts` WHERE (carClass = 0 or carClass is NULL) and minimalThreshold>=0;

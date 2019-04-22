@@ -1,21 +1,13 @@
-package com.training.controller.command.guest;
+package com.training.controller.command.user;
 
 import com.training.controller.IServletConstants;
 import com.training.controller.command.Command;
-import com.training.controller.utill.impl.Authorization;
-import com.training.controller.utill.impl.Localization;
-import com.training.controller.utill.impl.UserDataManager;
-import com.training.controller.utill.impl.UserExtractor;
 import com.training.model.dao.DaoFactory;
 import com.training.model.dao.interfaces.CarDao;
-import com.training.model.dao.interfaces.DiscountDao;
 import com.training.model.dao.interfaces.StreetDao;
-import com.training.model.entity.Discount;
-import com.training.model.entity.Order;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.*;
 
 public class GetTaxiCommand implements Command {
     private Logger log = Logger.getLogger(GetTaxiCommand.class);

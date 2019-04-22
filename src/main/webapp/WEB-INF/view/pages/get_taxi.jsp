@@ -33,7 +33,7 @@
             <div class="row my_block">
                 <div class="col-lg-3"></div>
                 <div class="col-lg-6 text-center">
-                    <form method="POST" action="${pageContext.request.contextPath}${PATH}/get_taxi/search">
+                    <form method="POST" action="${pageContext.request.contextPath}${PATH}/get_taxi/search"><%--todo: change to calculate--%>
 
                         <div class="form-group">
                             <label for="source_street"><fmt:message key="source_street"/></label>
@@ -73,35 +73,40 @@
 
 
         <c:if test="${(SUCCESSFUL_CONFIRMATION != 1)&&(SUCCESSFUL_SEARCH == 1)}">
-            <div class="row my_block">
-                <div class="col-lg-3"></div>
-                <div class="col-lg-6 text-center">
+            <form method="POST" action="${pageContext.request.contextPath}${PATH}/get_taxi/confirm">
+                <div class="row my_block">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6 text-left">
 
-                    <form method="POST" action="${pageContext.request.contextPath}${PATH}/get_taxi/comfirm">
-                        <input type="hidden" name="car_class_id" value="${ORDER.taxiCarClassId}">
-                        <input type="hidden" name="source_street_id" value="${ORDER.sourceStreetId}">
-                        <input type="hidden" name="destination_street_id" value="${ORDER.destinationStreetId}">
+                        <input type="hidden" name="car_class" value="${ORDER.taxiCarClassId}">
+                        <input type="hidden" name="source_street" value="${ORDER.sourceStreetId}">
+                        <input type="hidden" name="destination_street" value="${ORDER.destinationStreetId}">
 
-                        car_class: ${CARS_LIST.get(ORDER.taxiCarClassId-1).getNameString(sessionScope.lang)}<br>
-                        source_street: ${STREETS_LIST.get(ORDER.sourceStreetId-1).getNameString(sessionScope.lang)}<br>
-                        destination_street: ${STREETS_LIST.get(ORDER.destinationStreetId-1).getNameString(sessionScope.lang)}<br>
-                        userThresholdsDiscount: ${ORDER.userThresholdsDiscount}<br>
-                        orderDiscountsSum: ${ORDER.orderDiscountsSum}<br>
-                        price: ${ORDER.orderPrice}<br>
-                        OrderFinalPrice: ${ORDER.getOrderFinalPrice()}<br>
-                        OrderDiscount: ${ORDER.getOrderDiscount()}<br>
+
+                        <fmt:message key="car_class"/> ${CARS_LIST.get(ORDER.taxiCarClassId-1).getNameString(sessionScope.lang)}<br>
+                        <fmt:message key="source_street"/> ${STREETS_LIST.get(ORDER.sourceStreetId-1).getNameString(sessionScope.lang)}<br>
+                        <fmt:message key="destination_street"/> ${STREETS_LIST.get(ORDER.destinationStreetId-1).getNameString(sessionScope.lang)}<br>
+                        <fmt:message key="userThresholdsDiscount"/> ${ORDER.userThresholdsDiscount}<br>
+                        <fmt:message key="orderDiscountsSum"/> ${ORDER.orderDiscountsSum}<br>
+                        <fmt:message key="raw_price"/> ${ORDER.orderPrice}<br>
+                        <fmt:message key="OrderDiscount"/> ${ORDER.getOrderDiscount()}<br>
+                        <fmt:message key="OrderFinalPrice"/> ${ORDER.getOrderFinalPrice()}<br>
                             <%--<input class="form-control" type="text" placeholder="Readonly input here…" readonly>--%>
-
-
+                    </div>
+                    <div class="col-lg-3"></div>
+                </div>
+                <div class="row my_block">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6 text-center">
                         <button type="submit" class="btn btn-outline-dark" data-toggle="tooltip"
                                 data-placement="top" title="<fmt:message key="comfirm_taxi_message"/>">
                             <fmt:message key="comfirm_taxi"/>
                         </button>
-                    </form>
 
+                    </div>
+                    <div class="col-lg-3"></div>
                 </div>
-                <div class="col-lg-3"></div>
-            </div>
+            </form>
         </c:if>
 
     </div>
