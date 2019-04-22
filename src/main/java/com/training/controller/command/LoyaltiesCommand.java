@@ -2,6 +2,7 @@ package com.training.controller.command;
 
 import com.training.controller.IServletConstants;
 import com.training.controller.utill.impl.Pagenizer;
+import com.training.controller.utill.impl.RequestDataManager;
 import com.training.model.dao.DaoFactory;
 import com.training.model.dao.interfaces.CarDao;
 import com.training.model.dao.interfaces.DiscountDao;
@@ -17,22 +18,20 @@ import java.util.List;
 import java.util.Optional;
 
 public class LoyaltiesCommand implements Command {
-    private static final Logger log = Logger.getLogger(LoyaltiesCommand.class);
+    private final Logger log = Logger.getLogger(LoyaltiesCommand.class);
+    private Pagenizer pagenizer;
+    private RequestDataManager requestDataManager;
 
-    // TODO: 4/20/19 move to constructor
-    private Pagenizer pagenizer = new Pagenizer();
+    public LoyaltiesCommand(RequestDataManager requestDataManager, Pagenizer pagenizer) {
+        this.requestDataManager = requestDataManager;
+        this.pagenizer = pagenizer;
+    }
 
     @Override
     public String execute(HttpServletRequest req) {
-        List<LoyaltyThreshold> loyalties = new ArrayList<>();
+        List<LoyaltyThreshold> loyalties = requestDataManager.
+                getLoyaltyThresholdList(req);
 
-        try(LoyaltyThresholdDao dao = DaoFactory.getInstance().createLoyaltyThresholdDao()){
-            loyalties = dao.findAll();
-            req.setAttribute(IServletConstants.LOYALTIES_LIST_KEY_WORD, loyalties);
-        } catch (Exception e){
-            log.info("LoyaltyThreshold list extraction was failed with :" + e.getMessage());
-        }
-        
         pagenizer.pagenize(req, IServletConstants.PAGE_ELEMENTS_COUNT,
                 loyalties);
 

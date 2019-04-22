@@ -19,31 +19,20 @@ import java.util.Optional;
 public class DiscountsCommand implements Command {
     private static final Logger log = Logger.getLogger(DiscountsCommand.class);
 
-    // TODO: 4/20/19 move to constructor
-    private Pagenizer pagenizer = new Pagenizer();
+    private Pagenizer pagenizer;
+    private RequestDataManager requestDataManager;
+
+    public DiscountsCommand(RequestDataManager requestDataManager, Pagenizer pagenizer) {
+        this.requestDataManager = requestDataManager;
+        this.pagenizer = pagenizer;
+    }
 
     @Override
     public String execute(HttpServletRequest req) {
-        List<Discount> discounts = new ArrayList<>();
+        List<Discount> discounts = requestDataManager.getDiscountList(req);
 
-        try(DiscountDao dao = DaoFactory.getInstance().createDiscountDao()){
-            discounts = dao.findAll();
-            req.setAttribute(IServletConstants.DISCOUNTS_LIST_KEY_WORD, discounts);
-        } catch (Exception e){
-            log.info("discounts list extraction was failed with :" + e.getMessage());
-        }
-        try(CarDao dao = DaoFactory.getInstance().createCarDao()){
-            req.setAttribute(IServletConstants.CARS_LIST_KEY_WORD, dao.findAll());
-        } catch (Exception e){
-            log.info("cars list extraction was failed with :" + e.getMessage());
-            log.debug(e, e);
-        }
-        try(StreetDao dao = DaoFactory.getInstance().createStreetDao()){
-            req.setAttribute(IServletConstants.STREETS_LIST_KEY_WORD, dao.findAll());
-        } catch (Exception e){
-            log.info("street list extraction was failed with :" + e.getMessage());
-        }
-
+        requestDataManager.getCarList(req);
+        requestDataManager.getStreetList(req);
 
         pagenizer.pagenize(req, IServletConstants.PAGE_ELEMENTS_COUNT,
                 discounts);

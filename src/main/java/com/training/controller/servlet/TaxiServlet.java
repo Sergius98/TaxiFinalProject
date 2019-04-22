@@ -48,10 +48,14 @@ public class TaxiServlet extends HttpServlet {
         UserDataManager userDataManager = new UserDataManager();
         Authorization.init(new UserExtractor(), userDataManager,
                 new Localization());
+        RequestDataManager requestDataManager = new RequestDataManager();
+        Pagenizer pagenizer = new Pagenizer();
 
         HomeCommand homeCommand = new HomeCommand(userDataManager);
         LoginCommand loginCommand = new LoginCommand(Authorization.getInstance());
         SignUpCommand signupCommand = new SignUpCommand(Authorization.getInstance());
+        DiscountsCommand discountsCommand = new DiscountsCommand(requestDataManager, pagenizer);
+        LoyaltiesCommand loyaltiesCommand = new LoyaltiesCommand(requestDataManager, pagenizer);
 
         // not a user (access level 0)
         commands.put(IServletConstants.GUEST_PREFIX +
@@ -61,9 +65,9 @@ public class TaxiServlet extends HttpServlet {
         commands.put(IServletConstants.GUEST_PREFIX +
                 IServletConstants.SIGNUP_PAGE_PATH, signupCommand);
         commands.put(IServletConstants.GUEST_PREFIX +
-                IServletConstants.DISCOUNTS_PAGE_PATH, new DiscountsCommand());
+                IServletConstants.DISCOUNTS_PAGE_PATH, discountsCommand);
         commands.put(IServletConstants.GUEST_PREFIX +
-                IServletConstants.LOYALTIES_PAGE_PATH, new LoyaltiesCommand());
+                IServletConstants.LOYALTIES_PAGE_PATH, loyaltiesCommand);
 
         // user (access level 1)
         commands.put(IServletConstants.USER_PREFIX +
@@ -71,9 +75,9 @@ public class TaxiServlet extends HttpServlet {
         commands.put(IServletConstants.USER_PREFIX +
                 IServletConstants.LOGOUT_PAGE_PATH, new LogoutCommand());
         commands.put(IServletConstants.USER_PREFIX +
-                IServletConstants.DISCOUNTS_PAGE_PATH, new DiscountsCommand());
+                IServletConstants.DISCOUNTS_PAGE_PATH, discountsCommand);
         commands.put(IServletConstants.USER_PREFIX +
-                IServletConstants.LOYALTIES_PAGE_PATH, new LoyaltiesCommand());
+                IServletConstants.LOYALTIES_PAGE_PATH, loyaltiesCommand);
         commands.put(IServletConstants.USER_PREFIX +
                 IServletConstants.GET_TAXI_PAGE_PATH, new GetTaxiCommand());
         commands.put(IServletConstants.USER_PREFIX +
@@ -87,13 +91,13 @@ public class TaxiServlet extends HttpServlet {
         commands.put(IServletConstants.ADMIN_PREFIX +
                 IServletConstants.LOGOUT_PAGE_PATH, new LogoutCommand());
         commands.put(IServletConstants.ADMIN_PREFIX +
-                IServletConstants.DISCOUNTS_PAGE_PATH, new DiscountsCommand());
+                IServletConstants.DISCOUNTS_PAGE_PATH, discountsCommand);
         commands.put(IServletConstants.ADMIN_PREFIX +
                 IServletConstants.DISCOUNTS_DELETE_PAGE_PATH, new DeleteDiscountCommand());
         commands.put(IServletConstants.ADMIN_PREFIX +
                 IServletConstants.DISCOUNTS_ADD_PAGE_PATH, new AddDiscountCommand());
         commands.put(IServletConstants.ADMIN_PREFIX +
-                IServletConstants.LOYALTIES_PAGE_PATH, new LoyaltiesCommand());
+                IServletConstants.LOYALTIES_PAGE_PATH, loyaltiesCommand);
         commands.put(IServletConstants.ADMIN_PREFIX +
                 IServletConstants.DELETE_LOYALTY_THRESHOLD_PAGE_PATH, new DeleteLoyaltyThresholdCommand());
         commands.put(IServletConstants.ADMIN_PREFIX +
