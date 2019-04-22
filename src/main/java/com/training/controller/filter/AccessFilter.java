@@ -11,31 +11,34 @@ import java.io.IOException;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
+/**
+ * manage user role and page access
+ * check if they are even
+ */
 @WebFilter(urlPatterns = IServletConstants.ACCESS_FILTER_PATH)
 public class AccessFilter implements Filter {
-
     private Logger log = Logger.getLogger(AccessFilter.class);
-
-
-    AccessPathExtractor accessPathExtractor = new AccessPathExtractor();
+    private AccessPathExtractor accessPathExtractor = new AccessPathExtractor();
 
 
     @Override
-    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
+    public void doFilter(ServletRequest req,
+                         ServletResponse resp, FilterChain chain)
             throws IOException, ServletException {
         int role = getRole((HttpServletRequest)req);
+        int access = getAccess((HttpServletRequest)req);
+
         req.setAttribute(IServletConstants.ROLE_ATTRIBUTE_KEY_WORD, role);
         log.info("role : " + role);
-        int access = getAccess((HttpServletRequest)req);
         log.info("access : " + access);
 
         if(role != access){
+            accessPathExtractor.extract((HttpServletRequest) req).get();
+
             log.warn("unauthorized access");
+            throw new IOException("user doesn't have right to see this page");
             // TODO: 4/18/19 EXCEPTION
             //throw new NoAccessException("You don`t have permission to visit this page");
-
-            accessPathExtractor.extract((HttpServletRequest) req).get();
-            throw new IOException("user doesn't have permission to visit this page");
         }
         chain.doFilter(req, resp);
 
@@ -43,26 +46,19 @@ public class AccessFilter implements Filter {
 
     @Override
     public void destroy() {
-
+        log.debug("filter is destroyed");
     }
 
     private int getRole(HttpServletRequest req) {
-        Optional<Integer> role = Optional.ofNullable(
-                (Integer)req.getSession()
-                        .getAttribute(IServletConstants.ROLE_ATTRIBUTE_KEY_WORD));
+        Optional<Integer> role = Optional.ofNullable((Integer)req.getSession()
+                .getAttribute(IServletConstants.ROLE_ATTRIBUTE_KEY_WORD));
+
         return role.orElse(IServletConstants.LOWEST_ACCESS_LEVEL);
-        /*
-        Optional<String> role = Optional.ofNullable(
-                (String)req.getSession()
-                        .getAttribute(IServletConstants.ROLE_ATTRIBUTE_KEY_WORD)
-        );
-        return role.map(Integer::parseInt)
-                .orElse(IServletConstants.LOWEST_ACCESS_LEVEL);
-                */
     }
 
     private int getAccess(HttpServletRequest req) {
         String uri = req.getRequestURI();
+
         return IntStream.range(0, IServletConstants.ROLES_PREFIXES.length)
                 .filter(i -> uri.contains(IServletConstants.ROLES_PREFIXES[i]))
                 .findFirst()

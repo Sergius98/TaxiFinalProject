@@ -10,39 +10,54 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Optional;
 
+/**
+ * manage currency(current and list) in request and session
+ */
 @WebFilter(urlPatterns = IServletConstants.CURRENCY_FILTER_PATH)
 public class CurrencyFilter implements Filter {
 
     private Logger log = Logger.getLogger(CurrencyFilter.class);
 
     @Override
-    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
+    public void doFilter(ServletRequest request, ServletResponse resp,
+                         FilterChain chain)
             throws IOException, ServletException {
+        HttpServletRequest req = (HttpServletRequest)request;
+        Optional<String> currency = Optional.ofNullable(req.getParameter(
+                IServletConstants.CURR_ATTRIBUTE_KEY_WORD));
 
-        Optional<String> language = Optional.ofNullable(req.getParameter(IServletConstants.CURR_ATTRIBUTE_KEY_WORD));
-        if (language.isPresent()){
-            ((HttpServletRequest)req).getSession().setAttribute(IServletConstants.CURR_ATTRIBUTE_KEY_WORD, req.getParameter(IServletConstants.CURR_ATTRIBUTE_KEY_WORD));
+        if (currency.isPresent()){
+            log.info("new currency: " + currency.get());
+            req.getSession().setAttribute(
+                    IServletConstants.CURR_ATTRIBUTE_KEY_WORD,
+                    req.getParameter(
+                            IServletConstants.CURR_ATTRIBUTE_KEY_WORD));
         }
         req.setAttribute(IServletConstants.CURRENCY_LIST_ATTRIBUTE_KEY_WORD,
-                IServletConstants.CURRENCY_LIST);
-        if (Optional.ofNullable(((HttpServletRequest)req).getSession().getAttribute(IServletConstants.CURR_ATTRIBUTE_KEY_WORD)).isPresent()){
-            req.setAttribute(IServletConstants.CURRENCY_ATTRIBUTE_KEY_WORD, ((HttpServletRequest)req).getSession().getAttribute(IServletConstants.CURR_ATTRIBUTE_KEY_WORD));
+                         IServletConstants.CURRENCY_LIST);
+
+        currency = Optional.ofNullable((String)req.getSession()
+                .getAttribute(IServletConstants.CURR_ATTRIBUTE_KEY_WORD));
+        if (currency.isPresent()){
+            log.info("currency: " + currency.get());
+            req.setAttribute(IServletConstants.CURRENCY_ATTRIBUTE_KEY_WORD,
+                    currency.get());
         } else {
-            req.setAttribute(IServletConstants.CURRENCY_ATTRIBUTE_KEY_WORD, IServletConstants.CURRENCY_LIST[0]);
+            log.info("currency: " + IServletConstants.CURRENCY_LIST[0]);
+            req.setAttribute(IServletConstants.CURRENCY_ATTRIBUTE_KEY_WORD,
+                    IServletConstants.CURRENCY_LIST[0]);
         }
 
         req.setAttribute(IServletConstants.CURRENCY_FORMATTER_KEY_WORD,
-                new CurrencyFormatter(
-                        (String)req.getAttribute(IServletConstants.CURRENCY_ATTRIBUTE_KEY_WORD)
-                ));
+                new CurrencyFormatter((String)req.getAttribute(
+                        IServletConstants.CURRENCY_ATTRIBUTE_KEY_WORD)));
 
         chain.doFilter(req, resp);
-
     }
 
     @Override
     public void destroy() {
-
+        log.debug("filter is destroyed");
     }
 
 }
