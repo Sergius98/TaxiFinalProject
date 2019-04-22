@@ -12,7 +12,11 @@ import java.util.*;
 
 public class LoginCommand implements Command {
     private Logger log = Logger.getLogger(LoginCommand.class);
-    private Authorization authorization = Authorization.getInstance();
+    private Authorization authorization;
+
+    public LoginCommand(Authorization authorization) {
+        this.authorization = authorization;
+    }
 
     @Override
     public String execute(HttpServletRequest req) {

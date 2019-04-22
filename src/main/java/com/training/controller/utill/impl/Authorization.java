@@ -22,6 +22,8 @@ public class Authorization implements IAuthorization {
     private static volatile  UserExtractor extractor;
     private static volatile IUserDataManager userDataManager;
 
+    private Authorization(){}
+
     public static void init(UserExtractor extractor, IUserDataManager userDataManager, Localization localization){
         synchronized (Authorization.class) {
             Authorization.extractor = extractor;

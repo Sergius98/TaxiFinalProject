@@ -10,7 +10,12 @@ public class WrongPathCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest req) {
-        log.info("tried to access page that doesnt exist : " + req.getRequestURL());
+
+        log.info("user"+req.getSession().
+                getAttribute(IServletConstants.USER_ID_ATTRIBUTE_KEY_WORD) +
+                "tried to access page that doesnt exist : " +
+                req.getRequestURL());
+
         return IServletConstants.REDIRECT_KEY_WORD + IServletConstants.HOME_PAGE_PATH;
     }
 }

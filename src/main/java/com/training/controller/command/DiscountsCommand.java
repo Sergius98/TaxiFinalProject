@@ -44,24 +44,9 @@ public class DiscountsCommand implements Command {
             log.info("street list extraction was failed with :" + e.getMessage());
         }
 
-        // TODO: 4/21/19 util
-        Optional<Integer> page = Optional.ofNullable(
-                (Integer)((HttpServletRequest) req).getSession()
-                        .getAttribute(IServletConstants.PAGE_NUMBER_KEY_WORD));
-        Optional<String> newPage = Optional.ofNullable(
-                req.getParameter(IServletConstants.PAGE_NUMBER_KEY_WORD));
-
-        if (newPage.isPresent()){
-            try{
-                page = Optional.of(Integer.valueOf(req.getParameter(
-                                IServletConstants.PAGE_NUMBER_KEY_WORD)));
-            } catch (NumberFormatException e){
-                page = Optional.of(1);
-            }
-        }
 
         pagenizer.pagenize(req, IServletConstants.PAGE_ELEMENTS_COUNT,
-                discounts, page.orElse(1));
+                discounts);
 
         return IServletConstants.DISCOUNTS_PAGE_JSP;
     }

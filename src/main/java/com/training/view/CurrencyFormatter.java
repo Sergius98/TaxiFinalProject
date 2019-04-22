@@ -1,6 +1,5 @@
-package com.training.controller.utill.impl;
+package com.training.view;
 
-import com.training.controller.utill.interfaces.ICurrencyFormatter;
 import org.apache.log4j.Logger;
 
 import java.util.MissingResourceException;
@@ -30,7 +29,7 @@ public class CurrencyFormatter implements ICurrencyFormatter {
     public String format(Long number) {
         long value = number * multiplier;
 
-        return String.valueOf(value / 100) + "." + String.format("%02d", value % 100);
+        return (value / 100) + "." + String.format("%02d", value % 100);
     }
 
     @Override

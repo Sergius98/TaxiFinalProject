@@ -2,10 +2,6 @@ package com.training.model.dao.impl;
 
 import com.training.model.dao.ISqlStatements;
 import com.training.model.dao.interfaces.TaxiDao;
-import com.training.model.dao.interfaces.UserDao;
-import com.training.model.dao.mappers.StreetMapper;
-import com.training.model.entity.Order;
-import com.training.model.entity.Street;
 import com.training.model.entity.Taxi;
 import org.apache.log4j.Logger;
 

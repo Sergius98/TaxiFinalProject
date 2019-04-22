@@ -2,11 +2,8 @@ package com.training.model.dao.impl;
 
 import com.training.model.dao.ISqlStatements;
 import com.training.model.dao.interfaces.OrderDao;
-import com.training.model.dao.interfaces.StreetDao;
 import com.training.model.dao.mappers.OrderMapper;
-import com.training.model.dao.mappers.StreetMapper;
 import com.training.model.entity.Order;
-import com.training.model.entity.Street;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -62,7 +59,6 @@ public class JDBCOrderDao implements OrderDao {
 
     @Override
     public void update(Order entity) {
-// TODO: 4/21/19 transaction
     }
 
     @Override

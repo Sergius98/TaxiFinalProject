@@ -2,19 +2,14 @@ package com.training.model.dao.impl;
 
 import com.training.model.dao.ISqlStatements;
 import com.training.model.dao.interfaces.CarDao;
-import com.training.model.dao.interfaces.TaxiDao;
 import com.training.model.dao.mappers.CarMapper;
-import com.training.model.dao.mappers.StreetMapper;
 import com.training.model.entity.Car;
-import com.training.model.entity.Street;
-import com.training.model.entity.Taxi;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 

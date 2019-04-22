@@ -1,7 +1,7 @@
 package com.training.controller.filter;
 
 import com.training.controller.IServletConstants;
-import com.training.controller.utill.impl.CurrencyFormatter;
+import com.training.view.CurrencyFormatter;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;

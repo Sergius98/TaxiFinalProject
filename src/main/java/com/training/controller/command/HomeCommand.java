@@ -18,6 +18,7 @@ public class HomeCommand implements Command {
     public String execute(HttpServletRequest req) {
 
         userDataManager.setUserDataFromSession(req);
+
         return IServletConstants.HOME_PAGE_JSP;
     }
 }

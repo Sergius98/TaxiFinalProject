@@ -46,38 +46,64 @@ public class TaxiServlet extends HttpServlet {
     @Override
     public void init(){
         UserDataManager userDataManager = new UserDataManager();
-        Authorization.init(new UserExtractor(), userDataManager, new Localization());
+        Authorization.init(new UserExtractor(), userDataManager,
+                new Localization());
 
         HomeCommand homeCommand = new HomeCommand(userDataManager);
+        LoginCommand loginCommand = new LoginCommand(Authorization.getInstance());
+        SignUpCommand signupCommand = new SignUpCommand(Authorization.getInstance());
 
         // not a user (access level 0)
-        commands.put(IServletConstants.GUEST_PREFIX + IServletConstants.HOME_PAGE_PATH, homeCommand);
-        commands.put(IServletConstants.GUEST_PREFIX + IServletConstants.LOGIN_PAGE_PATH, new LoginCommand());
-        commands.put(IServletConstants.GUEST_PREFIX + IServletConstants.SIGNUP_PAGE_PATH, new SignUpCommand());
-        commands.put(IServletConstants.GUEST_PREFIX + IServletConstants.DISCOUNTS_PAGE_PATH, new DiscountsCommand());
-        commands.put(IServletConstants.GUEST_PREFIX + IServletConstants.LOYALTIES_PAGE_PATH, new LoyaltiesCommand());
+        commands.put(IServletConstants.GUEST_PREFIX +
+                IServletConstants.HOME_PAGE_PATH, homeCommand);
+        commands.put(IServletConstants.GUEST_PREFIX +
+                IServletConstants.LOGIN_PAGE_PATH, loginCommand);
+        commands.put(IServletConstants.GUEST_PREFIX +
+                IServletConstants.SIGNUP_PAGE_PATH, signupCommand);
+        commands.put(IServletConstants.GUEST_PREFIX +
+                IServletConstants.DISCOUNTS_PAGE_PATH, new DiscountsCommand());
+        commands.put(IServletConstants.GUEST_PREFIX +
+                IServletConstants.LOYALTIES_PAGE_PATH, new LoyaltiesCommand());
 
         // user (access level 1)
-        commands.put(IServletConstants.USER_PREFIX + IServletConstants.HOME_PAGE_PATH, homeCommand);
-        commands.put(IServletConstants.USER_PREFIX + IServletConstants.LOGOUT_PAGE_PATH, new LogoutCommand());
-        commands.put(IServletConstants.USER_PREFIX + IServletConstants.DISCOUNTS_PAGE_PATH, new DiscountsCommand());
-        commands.put(IServletConstants.USER_PREFIX + IServletConstants.LOYALTIES_PAGE_PATH, new LoyaltiesCommand());
-        commands.put(IServletConstants.USER_PREFIX + IServletConstants.GET_TAXI_PAGE_PATH, new GetTaxiCommand());
-        commands.put(IServletConstants.USER_PREFIX + IServletConstants.SEARCH_TAXI_PAGE_PATH, new SearchTaxiCommand());
-        commands.put(IServletConstants.USER_PREFIX + IServletConstants.CONFIRM_TAXI_PAGE_PATH, new ConfirmTaxiCommand());
+        commands.put(IServletConstants.USER_PREFIX +
+                IServletConstants.HOME_PAGE_PATH, homeCommand);
+        commands.put(IServletConstants.USER_PREFIX +
+                IServletConstants.LOGOUT_PAGE_PATH, new LogoutCommand());
+        commands.put(IServletConstants.USER_PREFIX +
+                IServletConstants.DISCOUNTS_PAGE_PATH, new DiscountsCommand());
+        commands.put(IServletConstants.USER_PREFIX +
+                IServletConstants.LOYALTIES_PAGE_PATH, new LoyaltiesCommand());
+        commands.put(IServletConstants.USER_PREFIX +
+                IServletConstants.GET_TAXI_PAGE_PATH, new GetTaxiCommand());
+        commands.put(IServletConstants.USER_PREFIX +
+                IServletConstants.SEARCH_TAXI_PAGE_PATH, new SearchTaxiCommand());
+        commands.put(IServletConstants.USER_PREFIX +
+                IServletConstants.CONFIRM_TAXI_PAGE_PATH, new ConfirmTaxiCommand());
 
         // admin (access level 2)
-        commands.put(IServletConstants.ADMIN_PREFIX + IServletConstants.HOME_PAGE_PATH, homeCommand);
-        commands.put(IServletConstants.ADMIN_PREFIX + IServletConstants.LOGOUT_PAGE_PATH, new LogoutCommand());
-        commands.put(IServletConstants.ADMIN_PREFIX + IServletConstants.DISCOUNTS_PAGE_PATH, new DiscountsCommand());
-        commands.put(IServletConstants.ADMIN_PREFIX + IServletConstants.DISCOUNTS_DELETE_PAGE_PATH, new DeleteDiscountCommand());
-        commands.put(IServletConstants.ADMIN_PREFIX + IServletConstants.DISCOUNTS_ADD_PAGE_PATH, new AddDiscountCommand());
-        commands.put(IServletConstants.ADMIN_PREFIX + IServletConstants.LOYALTIES_PAGE_PATH, new LoyaltiesCommand());
-        commands.put(IServletConstants.ADMIN_PREFIX + IServletConstants.DELETE_LOYALTY_THRESHOLD_PAGE_PATH, new DeleteLoyaltyThresholdCommand());
-        commands.put(IServletConstants.ADMIN_PREFIX + IServletConstants.ADD_LOYALTY_THRESHOLD_PAGE_PATH, new AddLoyaltyThresholdCommand());
-        commands.put(IServletConstants.ADMIN_PREFIX + IServletConstants.GET_TAXI_PAGE_PATH, new GetTaxiCommand());
-        commands.put(IServletConstants.ADMIN_PREFIX + IServletConstants.SEARCH_TAXI_PAGE_PATH, new SearchTaxiCommand());
-        commands.put(IServletConstants.ADMIN_PREFIX + IServletConstants.CONFIRM_TAXI_PAGE_PATH, new ConfirmTaxiCommand());
+        commands.put(IServletConstants.ADMIN_PREFIX +
+                IServletConstants.HOME_PAGE_PATH, homeCommand);
+        commands.put(IServletConstants.ADMIN_PREFIX +
+                IServletConstants.LOGOUT_PAGE_PATH, new LogoutCommand());
+        commands.put(IServletConstants.ADMIN_PREFIX +
+                IServletConstants.DISCOUNTS_PAGE_PATH, new DiscountsCommand());
+        commands.put(IServletConstants.ADMIN_PREFIX +
+                IServletConstants.DISCOUNTS_DELETE_PAGE_PATH, new DeleteDiscountCommand());
+        commands.put(IServletConstants.ADMIN_PREFIX +
+                IServletConstants.DISCOUNTS_ADD_PAGE_PATH, new AddDiscountCommand());
+        commands.put(IServletConstants.ADMIN_PREFIX +
+                IServletConstants.LOYALTIES_PAGE_PATH, new LoyaltiesCommand());
+        commands.put(IServletConstants.ADMIN_PREFIX +
+                IServletConstants.DELETE_LOYALTY_THRESHOLD_PAGE_PATH, new DeleteLoyaltyThresholdCommand());
+        commands.put(IServletConstants.ADMIN_PREFIX +
+                IServletConstants.ADD_LOYALTY_THRESHOLD_PAGE_PATH, new AddLoyaltyThresholdCommand());
+        commands.put(IServletConstants.ADMIN_PREFIX +
+                IServletConstants.GET_TAXI_PAGE_PATH, new GetTaxiCommand());
+        commands.put(IServletConstants.ADMIN_PREFIX +
+                IServletConstants.SEARCH_TAXI_PAGE_PATH, new SearchTaxiCommand());
+        commands.put(IServletConstants.ADMIN_PREFIX +
+                IServletConstants.CONFIRM_TAXI_PAGE_PATH, new ConfirmTaxiCommand());
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

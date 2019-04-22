@@ -3,7 +3,6 @@ package com.training.model.dao.impl;
 import com.training.model.dao.ISqlStatements;
 import com.training.model.dao.interfaces.DiscountDao;
 import com.training.model.dao.mappers.DiscountMapper;
-import com.training.model.dao.mappers.UserMapper;
 import com.training.model.entity.Discount;
 import org.apache.log4j.Logger;
 

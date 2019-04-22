@@ -2,9 +2,7 @@ package com.training.model.dao.impl;
 
 import com.training.model.dao.ISqlStatements;
 import com.training.model.dao.interfaces.LoyaltyThresholdDao;
-import com.training.model.dao.mappers.DiscountMapper;
 import com.training.model.dao.mappers.LoyaltyThresholdMapper;
-import com.training.model.entity.Discount;
 import com.training.model.entity.LoyaltyThreshold;
 import org.apache.log4j.Logger;
 

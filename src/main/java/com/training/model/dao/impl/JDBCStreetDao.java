@@ -3,8 +3,6 @@ package com.training.model.dao.impl;
 import com.training.model.dao.ISqlStatements;
 import com.training.model.dao.interfaces.StreetDao;
 import com.training.model.dao.mappers.StreetMapper;
-import com.training.model.dao.mappers.UserMapper;
-import com.training.model.entity.Discount;
 import com.training.model.entity.Street;
 import org.apache.log4j.Logger;
 
@@ -13,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 
 public class JDBCStreetDao implements StreetDao {

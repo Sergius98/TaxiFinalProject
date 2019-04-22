@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class LoyaltyThresholdMapper {
+public class LoyaltyThresholdMapper extends AbstractMapper<LoyaltyThreshold> {
     private static final Logger log = Logger.getLogger(LoyaltyThresholdMapper.class);
 
-    public LoyaltyThreshold extractLoyaltyThreshold(ResultSet set) throws SQLException {
+    public LoyaltyThreshold extractEntity(ResultSet set) throws SQLException {
         LoyaltyThreshold loyalties = new LoyaltyThreshold();
         loyalties.setId(set.getInt("id"));
         log.debug("id:" + set.getInt("id"));
@@ -33,32 +33,5 @@ public class LoyaltyThresholdMapper {
             log.debug("discount is empty");
         }
         return loyalties;
-    }
-
-    public Optional<LoyaltyThreshold> extractFromResultSet(PreparedStatement prepStatement) {
-        Optional<LoyaltyThreshold> loyalties = Optional.empty();
-        try (ResultSet resultSet = prepStatement.executeQuery()) {
-            while (resultSet.next()) {
-                loyalties = Optional.of(extractLoyaltyThreshold(resultSet));
-            }
-        } catch (SQLException e) {
-            log.warn("there is a SQLException in extractFromResultSet");
-            log.debug(e.getMessage(), e);
-        }
-        return loyalties;
-    }
-
-    public List<LoyaltyThreshold> extractAllFromResultSet(PreparedStatement prepStatement) {
-        List<LoyaltyThreshold> loyaltiesList = new ArrayList<>();
-
-        try (ResultSet resultSet = prepStatement.executeQuery()) {
-            while (resultSet.next()) {
-                loyaltiesList.add(extractLoyaltyThreshold(resultSet));
-            }
-        } catch (SQLException e) {
-            log.warn("there is a SQLException in extractAllFromResultSet");
-            log.debug(e.getMessage(), e);
-        }
-        return loyaltiesList;
     }
 }

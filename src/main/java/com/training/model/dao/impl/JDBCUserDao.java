@@ -6,7 +6,6 @@ import com.training.model.dao.mappers.UserMapper;
 import com.training.model.entity.User;
 import org.apache.log4j.Logger;
 
-import javax.servlet.Servlet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
