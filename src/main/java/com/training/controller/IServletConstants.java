@@ -16,6 +16,7 @@ public interface IServletConstants {
 
     String[] ROLES_PREFIXES = {GUEST_PREFIX, USER_PREFIX, ADMIN_PREFIX};
     int LOWEST_ACCESS_LEVEL = 0;
+    int NO_USER_ID = -1;
 
     String ACCESS_FILTER_PATH = SERVLET_PATH;
     String LANGUAGE_FILTER_PATH = SERVLET_PATH;

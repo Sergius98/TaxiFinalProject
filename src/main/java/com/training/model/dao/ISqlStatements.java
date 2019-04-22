@@ -67,7 +67,8 @@ public interface ISqlStatements {
             "where src.id=(?) and " +
             "      dst.id=(?) and " +
             "      u.id=(?) and " +
-            "      car.id=(?)";
+            "      car.id=(?) " +
+            "limit 1";
 
     String FINT_TAXY_ID_AND_DELAY_BY_CAR_CLASS_AND_SRC_STREET = "SELECT t.id as taxiId, " +
             "   (ABS(l.x - s.x)+ABS(l.y - s.y)) as delay " +

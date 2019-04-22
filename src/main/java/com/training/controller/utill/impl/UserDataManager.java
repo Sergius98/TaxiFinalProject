@@ -1,14 +1,14 @@
 package com.training.controller.utill.impl;
 
 import com.training.controller.IServletConstants;
-import com.training.controller.utill.interfaces.IUserDataManeger;
+import com.training.controller.utill.interfaces.IUserDataManager;
 import com.training.model.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-public class UserDataManager implements IUserDataManeger {
+public class UserDataManager implements IUserDataManager {
 
     @Override
     public void setUser(HttpServletRequest req, Optional<User> optionalUser){
@@ -32,9 +32,10 @@ public class UserDataManager implements IUserDataManeger {
                     IServletConstants.ROLE_ATTRIBUTE_KEY_WORD, user_role);
         } catch (NoSuchElementException e){
             req.getSession().setAttribute(
-                    IServletConstants.USER_ID_ATTRIBUTE_KEY_WORD, -1);
+                    IServletConstants.USER_ID_ATTRIBUTE_KEY_WORD, IServletConstants.NO_USER_ID);
             req.getSession().setAttribute(
-                    IServletConstants.ROLE_ATTRIBUTE_KEY_WORD, 0);
+                    IServletConstants.ROLE_ATTRIBUTE_KEY_WORD,
+                    IServletConstants.LOWEST_ACCESS_LEVEL);
         }
     }
 

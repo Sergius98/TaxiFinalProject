@@ -12,9 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class LogoutCommand implements Command {
     private Logger log = Logger.getLogger(LoginCommand.class);
-    // TODO: 4/19/19 get instance of Authorization without giving extractor
-
-    private Authorization authorization = new Authorization(new UserExtractor(), new UserDataManager());
+    private Authorization authorization = Authorization.getInstance();
 
     @Override
     public String execute(HttpServletRequest req) {

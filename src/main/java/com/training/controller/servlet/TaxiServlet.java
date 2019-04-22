@@ -13,7 +13,7 @@ import com.training.controller.command.guest.LoginCommand;
 import com.training.controller.command.user.SearchTaxiCommand;
 import com.training.controller.command.guest.SignUpCommand;
 import com.training.controller.command.user.LogoutCommand;
-import com.training.controller.utill.impl.AccessPathExtractor;
+import com.training.controller.utill.impl.*;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -40,6 +40,9 @@ public class TaxiServlet extends HttpServlet {
 
     @Override
     public void init(){
+        Authorization.init(new UserExtractor(), new UserDataManager(), new Localization());
+
+
         // not a user (access level 0)
         commands.put(IServletConstants.GUEST_PREFIX + IServletConstants.HOME_PAGE_PATH, new HomeCommand());
         commands.put(IServletConstants.GUEST_PREFIX + IServletConstants.LOGIN_PAGE_PATH, new LoginCommand());

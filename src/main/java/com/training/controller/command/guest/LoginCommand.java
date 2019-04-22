@@ -12,8 +12,7 @@ import java.util.*;
 
 public class LoginCommand implements Command {
     private Logger log = Logger.getLogger(LoginCommand.class);
-    // TODO: 4/19/19 /for all commands/ move dependency into constructor
-    private Authorization authorization = new Authorization(new UserExtractor(), new UserDataManager());
+    private Authorization authorization = Authorization.getInstance();
 
     @Override
     public String execute(HttpServletRequest req) {

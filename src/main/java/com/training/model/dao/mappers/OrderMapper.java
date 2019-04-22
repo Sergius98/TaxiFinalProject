@@ -24,8 +24,11 @@ public class OrderMapper {
 
     public Optional<Order> extractFromResultSet(PreparedStatement prepStatement) {
         Optional<Order> order = Optional.empty();
+        log.fatal("I m in extractFromResultSet :");
         try (ResultSet resultSet = prepStatement.executeQuery()) {
+            log.fatal("I m in extractFromResultSet : ResultSet resultSet = prepStatement.executeQuery()");
             while (resultSet.next()) {
+                log.fatal("I m in extractFromResultSet : resultSet.next()");
                 order = Optional.of(extractOrder(resultSet));
             }
         } catch (SQLException e) {

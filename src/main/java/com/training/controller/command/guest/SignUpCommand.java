@@ -12,8 +12,7 @@ import java.util.NoSuchElementException;
 
 public class SignUpCommand implements Command {
     private Logger log = Logger.getLogger(SignUpCommand.class);
-
-    private Authorization authorization = new Authorization(new UserExtractor(), new UserDataManager());
+    private Authorization authorization = Authorization.getInstance();
 
     @Override
     public String execute(HttpServletRequest req) {

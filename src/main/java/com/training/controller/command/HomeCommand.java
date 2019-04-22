@@ -2,7 +2,7 @@ package com.training.controller.command;
 
 import com.training.controller.IServletConstants;
 import com.training.controller.utill.impl.UserDataManager;
-import com.training.controller.utill.interfaces.IUserDataManeger;
+import com.training.controller.utill.interfaces.IUserDataManager;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +11,7 @@ public class HomeCommand implements Command {
     private static final Logger log = Logger.getLogger(HomeCommand.class);
 
     // TODO: 4/19/19 move to constructor
-    private IUserDataManeger userDataManager = new UserDataManager();
+    private IUserDataManager userDataManager = new UserDataManager();
 
     @Override
     public String execute(HttpServletRequest req) {

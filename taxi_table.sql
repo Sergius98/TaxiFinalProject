@@ -77,7 +77,6 @@ INSERT INTO `test`.`streets`(`name_en`,`name_ua`,`x`,`y`) VALUES ("Fifth","Пя�
 INSERT INTO `test`.`streets`(`name_en`,`name_ua`,`x`,`y`) VALUES ("Sixth","Шоста",6,5);
 
 
-/* TODO: 4/21/19 change name to nickname in taxi db */
 
 INSERT INTO `test`.`taxies`(name,`carClass`,`streetId`) VALUES ("APOTO",1,1);
 INSERT INTO `test`.`taxies`(name,`carClass`,`streetId`) VALUES ("KOKO",2,5);

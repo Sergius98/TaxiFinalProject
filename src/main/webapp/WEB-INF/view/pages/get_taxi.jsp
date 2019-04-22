@@ -33,7 +33,7 @@
             <div class="row my_block">
                 <div class="col-lg-3"></div>
                 <div class="col-lg-6 text-center">
-                    <form method="POST" action="${pageContext.request.contextPath}${PATH}/get_taxi/search"><%--todo: change to calculate--%>
+                    <form method="POST" action="${pageContext.request.contextPath}${PATH}/get_taxi/search">
 
                         <div class="form-group">
                             <label for="source_street"><fmt:message key="source_street"/></label>
