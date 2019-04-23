@@ -33,11 +33,9 @@ public class JDBCDiscountDao implements DiscountDao {
     private void setLongOrNull(PreparedStatement prepStatement, int id,
                                Optional<Long> value) throws SQLException {
         try{
-            // TODO: 4/20/19 change to bigint (sql`s Long)
-            prepStatement.setInt(id, Integer.valueOf(String.valueOf(value.get())));
+            prepStatement.setLong(id, value.get());
         } catch (NoSuchElementException e){
-            // TODO: 4/20/19 change to bigint (sql`s Long)
-            prepStatement.setNull(id, Types.INTEGER);
+            prepStatement.setNull(id, Types.BIGINT);
         }
     }
 

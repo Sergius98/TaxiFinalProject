@@ -18,7 +18,7 @@ public class Order {
     }
 
     public long getOrderDiscount() {
-        return ((long) (userThresholdsDiscount * orderPrice)) + orderDiscountsSum;
+        return Math.min((((long) ((userThresholdsDiscount/100) * orderPrice)) + orderDiscountsSum), orderPrice);
     }
 
     public long getOrderFinalPrice(){

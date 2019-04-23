@@ -1,7 +1,7 @@
 package com.training.model.dao;
 
 public interface ISqlStatements {
-    String DB_NAME = "`test`";
+    String DB_NAME = "`taxiDB`";
 
     String INSERT_INTO_USER = "INSERT INTO " + DB_NAME + ".`users`" +
             " (`nickname`, `password`, `role`, `spendMoney`) VALUES (?,?,?,0)";
@@ -40,6 +40,7 @@ public interface ISqlStatements {
             ".`loyaltyThresholds` ORDER BY threshold ASC";
     String DELETE_LOYALTY_THRESHOLD = "delete from " + DB_NAME +
             ".`loyaltyThresholds` where `id`=(?)";
+
 
     String GET_ORDER = "SELECT src.X as srcX, " +
             "       src.Y as srcY, " +

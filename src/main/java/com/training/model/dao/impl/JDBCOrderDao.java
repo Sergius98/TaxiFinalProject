@@ -72,7 +72,7 @@ public class JDBCOrderDao implements OrderDao {
             connection.close();
         } catch (SQLException e) {
             log.warn("there is a SQLException in close");
-            log.debug(e.getMessage(), e);
+            log.trace(e, e);
         }
     }
 

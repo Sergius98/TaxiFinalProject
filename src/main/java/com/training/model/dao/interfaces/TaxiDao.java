@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface TaxiDao extends GenericDao<Taxi> {
     Optional<Integer> confirmOrderForClosestTaxiWithCarClass(int userId,
-            int carClass, int destinationStreetId, int sourceStreetId, int bill);
+            int carClass, int destinationStreetId, int sourceStreetId, long bill);
     void startTransaction() throws SQLException;
     void commit() throws SQLException;
 }

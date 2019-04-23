@@ -5,7 +5,7 @@ public class User {
     private String nickname;
     private String password;
     private int role; // 0 - user, 1 - admin
-    private int spendMoney;
+    private long spendMoney;
 
     public User(){
 
@@ -37,11 +37,11 @@ public class User {
         this.id = id;
     }
 
-    public int getSpendMoney() {
+    public long getSpendMoney() {
         return spendMoney;
     }
 
-    public void setSpendMoney(int spendMoney) {
+    public void setSpendMoney(long spendMoney) {
         this.spendMoney = spendMoney;
     }
 

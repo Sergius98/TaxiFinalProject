@@ -22,6 +22,7 @@ public class JDBCTaxiDao implements TaxiDao {
             startTransaction();
         } catch (SQLException e) {
             log.warn("can't start trsnsaction in constructor");
+            log.trace(e, e);
         }
     }
 
@@ -54,7 +55,7 @@ public class JDBCTaxiDao implements TaxiDao {
     @Override
     public Optional<Integer> confirmOrderForClosestTaxiWithCarClass(
             int userId, int carClass, int destinationStreetId,
-            int sourceStreetId, int bill) {
+            int sourceStreetId, long bill) {
         Optional<Integer> delay = Optional.empty();
         ResultSet resultSet;
         int taxiId;
@@ -72,7 +73,7 @@ public class JDBCTaxiDao implements TaxiDao {
             delay = Optional.of(resultSet.getInt("delay"));
             resultSet.close();
 
-            updateUserStatement.setInt(1, bill);
+            updateUserStatement.setLong(1, bill);
             updateUserStatement.setInt(2, userId);
             updateUserStatement.executeUpdate();
 

@@ -15,7 +15,7 @@ public class UserMapper extends AbstractMapper<User>  {
         user.setNickname(set.getString("nickname"));
         user.setPassword(set.getString("password"));
         user.setRole(set.getInt("role"));
-        user.setSpendMoney(set.getInt("spendMoney"));
+        user.setSpendMoney(set.getLong("spendMoney"));
         return user;
     }
 }

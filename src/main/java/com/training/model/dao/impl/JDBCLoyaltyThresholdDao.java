@@ -31,8 +31,8 @@ public class JDBCLoyaltyThresholdDao implements LoyaltyThresholdDao {
 
         try (PreparedStatement prepStatement = connection.prepareStatement(
                 ISqlStatements.INSERT_INTO_LOYALTY_THRESHOLD)) {
-            // TODO: 4/21/19 replace int with long
-            prepStatement.setInt(1, (int) entity.getThreshold());
+
+            prepStatement.setLong(1, entity.getThreshold());
             prepStatement.setDouble(2, entity.getDiscount());
 
             prepStatement.executeUpdate();
