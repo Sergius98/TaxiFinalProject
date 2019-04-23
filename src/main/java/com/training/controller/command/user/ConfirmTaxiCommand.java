@@ -15,7 +15,11 @@ import java.util.ResourceBundle;
 public class ConfirmTaxiCommand implements Command {
     private Logger log = Logger.getLogger(ConfirmTaxiCommand.class);
 
-    private Localization localization = new Localization();
+    private Localization localization;
+
+    public ConfirmTaxiCommand(Localization localization) {
+        this.localization = localization;
+    }
 
     @Override
     public String execute(HttpServletRequest req) {

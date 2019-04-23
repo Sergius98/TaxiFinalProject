@@ -45,17 +45,28 @@ public class TaxiServlet extends HttpServlet {
 
     @Override
     public void init(){
+        Localization localization = new Localization();
         UserDataManager userDataManager = new UserDataManager();
-        Authorization.init(new UserExtractor(), userDataManager,
-                new Localization());
+        Authorization.init(new UserExtractor(), userDataManager, localization);
         RequestDataManager requestDataManager = new RequestDataManager();
         Pagenizer pagenizer = new Pagenizer();
 
         HomeCommand homeCommand = new HomeCommand(userDataManager);
-        LoginCommand loginCommand = new LoginCommand(Authorization.getInstance());
-        SignUpCommand signupCommand = new SignUpCommand(Authorization.getInstance());
-        DiscountsCommand discountsCommand = new DiscountsCommand(requestDataManager, pagenizer);
-        LoyaltiesCommand loyaltiesCommand = new LoyaltiesCommand(requestDataManager, pagenizer);
+        LoginCommand loginCommand = new LoginCommand(
+                Authorization.getInstance());
+        SignUpCommand signupCommand = new SignUpCommand(
+                Authorization.getInstance());
+        LogoutCommand logoutCommand = new LogoutCommand(
+                Authorization.getInstance());
+        DiscountsCommand discountsCommand = new DiscountsCommand(
+                requestDataManager, pagenizer);
+        LoyaltiesCommand loyaltiesCommand = new LoyaltiesCommand(
+                requestDataManager, pagenizer);
+        SearchTaxiCommand searchTaxiCommand = new SearchTaxiCommand(
+                requestDataManager, localization);
+        GetTaxiCommand getTaxiCommand = new GetTaxiCommand(requestDataManager);
+        ConfirmTaxiCommand confirmTaxiCommand = new ConfirmTaxiCommand(
+                localization);
 
         // not a user (access level 0)
         commands.put(IServletConstants.GUEST_PREFIX +
@@ -73,23 +84,23 @@ public class TaxiServlet extends HttpServlet {
         commands.put(IServletConstants.USER_PREFIX +
                 IServletConstants.HOME_PAGE_PATH, homeCommand);
         commands.put(IServletConstants.USER_PREFIX +
-                IServletConstants.LOGOUT_PAGE_PATH, new LogoutCommand());
+                IServletConstants.LOGOUT_PAGE_PATH, logoutCommand);
         commands.put(IServletConstants.USER_PREFIX +
                 IServletConstants.DISCOUNTS_PAGE_PATH, discountsCommand);
         commands.put(IServletConstants.USER_PREFIX +
                 IServletConstants.LOYALTIES_PAGE_PATH, loyaltiesCommand);
         commands.put(IServletConstants.USER_PREFIX +
-                IServletConstants.GET_TAXI_PAGE_PATH, new GetTaxiCommand());
+                IServletConstants.GET_TAXI_PAGE_PATH, getTaxiCommand);
         commands.put(IServletConstants.USER_PREFIX +
-                IServletConstants.SEARCH_TAXI_PAGE_PATH, new SearchTaxiCommand());
+                IServletConstants.SEARCH_TAXI_PAGE_PATH, searchTaxiCommand);
         commands.put(IServletConstants.USER_PREFIX +
-                IServletConstants.CONFIRM_TAXI_PAGE_PATH, new ConfirmTaxiCommand());
+                IServletConstants.CONFIRM_TAXI_PAGE_PATH, confirmTaxiCommand);
 
         // admin (access level 2)
         commands.put(IServletConstants.ADMIN_PREFIX +
                 IServletConstants.HOME_PAGE_PATH, homeCommand);
         commands.put(IServletConstants.ADMIN_PREFIX +
-                IServletConstants.LOGOUT_PAGE_PATH, new LogoutCommand());
+                IServletConstants.LOGOUT_PAGE_PATH, logoutCommand);
         commands.put(IServletConstants.ADMIN_PREFIX +
                 IServletConstants.DISCOUNTS_PAGE_PATH, discountsCommand);
         commands.put(IServletConstants.ADMIN_PREFIX +
@@ -103,11 +114,11 @@ public class TaxiServlet extends HttpServlet {
         commands.put(IServletConstants.ADMIN_PREFIX +
                 IServletConstants.ADD_LOYALTY_THRESHOLD_PAGE_PATH, new AddLoyaltyThresholdCommand());
         commands.put(IServletConstants.ADMIN_PREFIX +
-                IServletConstants.GET_TAXI_PAGE_PATH, new GetTaxiCommand());
+                IServletConstants.GET_TAXI_PAGE_PATH, getTaxiCommand);
         commands.put(IServletConstants.ADMIN_PREFIX +
-                IServletConstants.SEARCH_TAXI_PAGE_PATH, new SearchTaxiCommand());
+                IServletConstants.SEARCH_TAXI_PAGE_PATH, searchTaxiCommand);
         commands.put(IServletConstants.ADMIN_PREFIX +
-                IServletConstants.CONFIRM_TAXI_PAGE_PATH, new ConfirmTaxiCommand());
+                IServletConstants.CONFIRM_TAXI_PAGE_PATH, confirmTaxiCommand);
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

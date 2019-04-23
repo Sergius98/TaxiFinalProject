@@ -3,6 +3,7 @@ package com.training.controller.command.user;
 import com.training.controller.IServletConstants;
 import com.training.controller.command.Command;
 import com.training.controller.utill.impl.Localization;
+import com.training.controller.utill.impl.RequestDataManager;
 import com.training.model.dao.DaoFactory;
 import com.training.model.dao.interfaces.CarDao;
 import com.training.model.dao.interfaces.OrderDao;
@@ -18,11 +19,16 @@ import java.util.ResourceBundle;
 public class SearchTaxiCommand implements Command {
     private Logger log = Logger.getLogger(SearchTaxiCommand.class);
 
-    private Localization localization = new Localization();
+    private Localization localization;
+    private RequestDataManager requestDataManager;
+
+    public SearchTaxiCommand(RequestDataManager requestDataManager, Localization localization) {
+        this.requestDataManager = requestDataManager;
+        this.localization = localization;
+    }
 
     @Override
     public String execute(HttpServletRequest req) {
-        String path;
         Locale locale = localization.extractLocale(req);
         Optional<Order> order;
 
@@ -35,23 +41,15 @@ public class SearchTaxiCommand implements Command {
             req.setAttribute(IServletConstants.ORDER_KEY_WORD, order.get());
             req.setAttribute(IServletConstants.SUCCESSFUL_SEARCH_KEY_WORD, 1);
         } catch (Exception e){
-            log.info("registration was failed with :" + e.getMessage(), e);
+            log.info("registration was failed with :" + e.getMessage());
+            log.trace(e,e);
             req.setAttribute(IServletConstants.ALERT_ATTRIBUTE_KEY_WORD,
                     ResourceBundle.getBundle("errors", locale)
                             .getString("invalid_order"));
         }
 
-        // TODO: 4/21/19 move to util
-        try(CarDao dao = DaoFactory.getInstance().createCarDao()){
-            req.setAttribute(IServletConstants.CARS_LIST_KEY_WORD, dao.findAll());
-        } catch (Exception e){
-            log.info("cars list extraction was failed with :" + e.getMessage());
-        }
-        try(StreetDao dao = DaoFactory.getInstance().createStreetDao()){
-            req.setAttribute(IServletConstants.STREETS_LIST_KEY_WORD, dao.findAll());
-        } catch (Exception e){
-            log.info("street list extraction was failed with :" + e.getMessage());
-        }
+        requestDataManager.getCarList(req);
+        requestDataManager.getStreetList(req);
 
         return IServletConstants.GET_TAXI_PAGE_JSP;
     }
