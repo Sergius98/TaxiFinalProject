@@ -20,8 +20,14 @@ import java.util.ResourceBundle;
 public class AddLoyaltyThresholdCommand implements Command {
     private static final Logger log = Logger.getLogger(AddLoyaltyThresholdCommand.class);
 
-    private Localization localization = new Localization();
-    private LoyaltyThresholdExtractor extractor = new LoyaltyThresholdExtractor();
+    private Localization localization;
+    private LoyaltyThresholdExtractor extractor;
+
+    public AddLoyaltyThresholdCommand(Localization localization, LoyaltyThresholdExtractor extractor) {
+        this.localization = localization;
+        this.extractor = extractor;
+    }
+
     @Override
     public String execute(HttpServletRequest req) {
         String path;

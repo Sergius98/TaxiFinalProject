@@ -18,8 +18,14 @@ import java.util.*;
 public class AddDiscountCommand implements Command {
     private static final Logger log = Logger.getLogger(AddDiscountCommand.class);
 
-    private Localization localization = new Localization();
-    private DiscountExtractor extractor = new DiscountExtractor();
+    private Localization localization;
+    private DiscountExtractor extractor;
+
+    public AddDiscountCommand(Localization localization, DiscountExtractor extractor) {
+        this.localization = localization;
+        this.extractor = extractor;
+    }
+
     @Override
     public String execute(HttpServletRequest req) {
         String path;

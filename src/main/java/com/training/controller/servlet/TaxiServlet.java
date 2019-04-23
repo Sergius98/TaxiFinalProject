@@ -47,26 +47,44 @@ public class TaxiServlet extends HttpServlet {
     public void init(){
         Localization localization = new Localization();
         UserDataManager userDataManager = new UserDataManager();
-        Authorization.init(new UserExtractor(), userDataManager, localization);
         RequestDataManager requestDataManager = new RequestDataManager();
         Pagenizer pagenizer = new Pagenizer();
+        UserExtractor userExtractor = new UserExtractor();
+        DiscountExtractor discountExtractor = new DiscountExtractor();
+        LoyaltyThresholdExtractor loyaltyThresholdExtractor =
+                new LoyaltyThresholdExtractor();
+
+        Authorization.init(userExtractor, userDataManager, localization);
 
         HomeCommand homeCommand = new HomeCommand(userDataManager);
+
         LoginCommand loginCommand = new LoginCommand(
                 Authorization.getInstance());
         SignUpCommand signupCommand = new SignUpCommand(
                 Authorization.getInstance());
         LogoutCommand logoutCommand = new LogoutCommand(
                 Authorization.getInstance());
-        DiscountsCommand discountsCommand = new DiscountsCommand(
-                requestDataManager, pagenizer);
-        LoyaltiesCommand loyaltiesCommand = new LoyaltiesCommand(
-                requestDataManager, pagenizer);
+
         SearchTaxiCommand searchTaxiCommand = new SearchTaxiCommand(
                 requestDataManager, localization);
         GetTaxiCommand getTaxiCommand = new GetTaxiCommand(requestDataManager);
         ConfirmTaxiCommand confirmTaxiCommand = new ConfirmTaxiCommand(
                 localization);
+
+        DiscountsCommand discountsCommand = new DiscountsCommand(
+                requestDataManager, pagenizer);
+        DeleteDiscountCommand deleteDiscountCommand =
+                new DeleteDiscountCommand();
+        AddDiscountCommand addDiscountCommand = new AddDiscountCommand(
+                localization, discountExtractor);
+
+        LoyaltiesCommand loyaltiesCommand = new LoyaltiesCommand(
+                requestDataManager, pagenizer);
+        DeleteLoyaltyThresholdCommand deleteLoyaltyThresholdCommand =
+                new DeleteLoyaltyThresholdCommand();
+        AddLoyaltyThresholdCommand addLoyaltyThresholdCommand =
+                new AddLoyaltyThresholdCommand(localization,
+                                               loyaltyThresholdExtractor);
 
         // not a user (access level 0)
         commands.put(IServletConstants.GUEST_PREFIX +
@@ -104,15 +122,17 @@ public class TaxiServlet extends HttpServlet {
         commands.put(IServletConstants.ADMIN_PREFIX +
                 IServletConstants.DISCOUNTS_PAGE_PATH, discountsCommand);
         commands.put(IServletConstants.ADMIN_PREFIX +
-                IServletConstants.DISCOUNTS_DELETE_PAGE_PATH, new DeleteDiscountCommand());
+                IServletConstants.DISCOUNTS_DELETE_PAGE_PATH,
+                deleteDiscountCommand);
         commands.put(IServletConstants.ADMIN_PREFIX +
-                IServletConstants.DISCOUNTS_ADD_PAGE_PATH, new AddDiscountCommand());
+                IServletConstants.DISCOUNTS_ADD_PAGE_PATH, addDiscountCommand);
         commands.put(IServletConstants.ADMIN_PREFIX +
                 IServletConstants.LOYALTIES_PAGE_PATH, loyaltiesCommand);
         commands.put(IServletConstants.ADMIN_PREFIX +
-                IServletConstants.DELETE_LOYALTY_THRESHOLD_PAGE_PATH, new DeleteLoyaltyThresholdCommand());
+                IServletConstants.DELETE_LOYALTY_THRESHOLD_PAGE_PATH,
+                deleteLoyaltyThresholdCommand);
         commands.put(IServletConstants.ADMIN_PREFIX +
-                IServletConstants.ADD_LOYALTY_THRESHOLD_PAGE_PATH, new AddLoyaltyThresholdCommand());
+                IServletConstants.ADD_LOYALTY_THRESHOLD_PAGE_PATH, addLoyaltyThresholdCommand);
         commands.put(IServletConstants.ADMIN_PREFIX +
                 IServletConstants.GET_TAXI_PAGE_PATH, getTaxiCommand);
         commands.put(IServletConstants.ADMIN_PREFIX +
@@ -134,7 +154,6 @@ public class TaxiServlet extends HttpServlet {
 
     private void process(HttpServletRequest req, HttpServletResponse resp)
             throws IOException, ServletException {
-        int role = 0;
         String accessPath;
         String path = req.getRequestURI().replaceAll(
                 IServletConstants.ROOT_PATH, "");

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
+//todo probably I should move it to the model? think about it latter
 public class RequestDataManager {
     private static final Logger log = Logger.getLogger(RequestDataManager.class);
 
